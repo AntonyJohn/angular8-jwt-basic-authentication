@@ -1,0 +1,103 @@
+{
+   "employees":[
+      {
+         "id":1,
+         "firstName":"Antony",
+         "lastName":"m",
+         "company":"CTS",         
+         "jobTitle":"Associate",
+		 "businessPhone":"",
+		 "homePhone":"",
+		 "mobilePhone":"1234567890",
+		 "faxNumber":"",
+		 "street":"South Gate",
+		 "city":"Chennai",
+		 "state":"TN",
+		 "country":"india",
+		 "email":"test@gmail.com",
+		 "webPage":"www.google.com",
+		 "notes":"test",
+		 "imageUrl":"https://source.unsplash.com/1600x900?product"      
+	},
+	{
+         "id":2,
+         "firstName":"John",
+         "lastName":"m",
+         "company":"TCS",         
+         "jobTitle":"Senior Associate",
+		 "businessPhone":"",
+		 "homePhone":"",
+		 "mobilePhone":"0987654321",
+		 "faxNumber":"",
+		 "street":"South Gate",
+		 "city":"Madurai",
+		 "state":"TN",
+		 "country":"india",
+		 "email":"test1@gmail.com",
+		 "webPage":"www.google.com",
+		 "notes":"test1",
+		 "imageUrl":"https://source.unsplash.com/1600x900?product"      
+	},
+	{
+         "id":3,
+         "firstName":"Jeff",
+         "lastName":"s",
+         "company":"TCS",         
+         "jobTitle":"Associate",
+		 "businessPhone":"",
+		 "homePhone":"",
+		 "mobilePhone":"3334444556",
+		 "faxNumber":"",
+		 "street":"South Gate",
+		 "city":"Chennai",
+		 "state":"TN",
+		 "country":"india",
+		 "email":"test2@gmail.com",
+		 "webPage":"www.google.com",
+		 "notes":"test",
+		 "imageUrl":"https://source.unsplash.com/1600x900?product"      
+	},
+	{
+         "id":4,
+         "firstName":"Arif",
+         "lastName":"a",
+         "company":"Capgemini",         
+         "jobTitle":"Tech Lead",
+		 "businessPhone":"",
+		 "homePhone":"",
+		 "mobilePhone":"6789879899",
+		 "faxNumber":"",
+		 "street":"South Gate",
+		 "city":"Chennai",
+		 "state":"TN",
+		 "country":"india",
+		 "email":"test2@gmail.com",
+		 "webPage":"www.google.com",
+		 "notes":"test",
+		 "imageUrl":"https://source.unsplash.com/1600x900?product"      
+	}
+   
+],
+"users":[
+      {
+         "id":1,
+         "userName":"antony",
+         "password":"1234", 
+		 "firstName":"antony",
+		 "lastName":"m",
+		 "token" :"",
+         "role":"Admin"
+      
+	},
+	{
+         "id":2,
+         "userName":"john",
+         "password":"1234", 
+		 "firstName":"john",
+		 "lastName":"m",
+		 "token" :"",         
+         "role":"Admin"
+      
+	}
+]
+}

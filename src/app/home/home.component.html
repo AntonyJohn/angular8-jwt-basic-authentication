@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">  
+<h1>  
+My Angular Employee App  
+</h1>  
+<button mat-button routerLink="/home">Home</button>  
+<button mat-button routerLink="/employee">Employee</button>
+<button mat-button routerLink="/" (click)= "authenticationService.logout()">Logout</button></mat-toolbar>
+
+<div style="padding: 13px;">
+    <mat-spinner *ngIf="employees.length === 0"></mat-spinner>
+    <mat-card *ngFor="let employee of employees" style="margin-top:10px;width:50em;">
+        <mat-card-header style="background-color:#33ffca">
+			<div mat-card-avatar style="margin: 5px 0px 0px 10px"><img style="height:100%;width: 100%;" src="{{ employee.imageUrl }}" /></div>
+            <mat-card-title>{{employee.firstName}} {{employee.lastName}}</mat-card-title>  
+			<mat-card-subtitle>{{employee.jobTitle}}</mat-card-subtitle>			
+        </mat-card-header>		
+		<mat-card-content  style="background-color:#da33ff">		
+			<span style="margin: 0px 0px 0px 5px"><h6>Employee Details</h6></span>
+			<mat-list>
+				<mat-list-item>Email:       {{employee.email}}</mat-list-item>
+				<mat-divider></mat-divider>
+				<mat-list-item>Mobile:       {{employee.mobilePhone}}</mat-list-item>
+				<mat-divider inset=“true”></mat-divider>
+				<mat-list-item>City:         {{employee.city}}</mat-list-item>
+				<mat-divider></mat-divider>
+			</mat-list> 						
+        </mat-card-content>					
+        <mat-card-actions>
+			<button mat-button> View </button>
+		</mat-card-actions>
+    </mat-card>		
+</div>
+

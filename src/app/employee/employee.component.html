@@ -1,0 +1,95 @@
+<mat-toolbar color="primary">  
+<h1>  
+My Angular Employee App  
+</h1>  
+<button mat-button routerLink="/home">Home</button>  
+<button mat-button routerLink="/employee">Employee</button>
+<button mat-button routerLink="/" (click)= "authenticationService.logout()">Logout</button></mat-toolbar>
+<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+<div class="mat-elevation-z8" *ngIf="isLoading">
+	<mat-table #table [dataSource]="dataSource">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!-- First Name Column -->
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+    </ng-container>
+
+    <!-- Last Name Column -->
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+    </ng-container>
+
+    <!-- Company Column -->
+    <ng-container matColumnDef="company">
+      <mat-header-cell *matHeaderCellDef> Company </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.company}} </mat-cell>
+    </ng-container>
+	
+	<!-- Title Column -->
+    <ng-container matColumnDef="jobTitle">
+      <mat-header-cell *matHeaderCellDef> Job Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.jobTitle}} </mat-cell>
+    </ng-container>
+	
+	<!-- Mobile Column -->
+    <ng-container matColumnDef="mobilePhone">
+      <mat-header-cell *matHeaderCellDef> Mobile Phone </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.mobilePhone}} </mat-cell>
+    </ng-container>
+	
+	 <!-- Street Column -->
+    <ng-container matColumnDef="street">
+      <mat-header-cell *matHeaderCellDef> Street </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.street}} </mat-cell>
+    </ng-container>
+	
+	<!-- City Column -->
+    <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+    </ng-container>
+	
+	<!-- State Column -->
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+    </ng-container>
+	
+	<!-- Country Column -->
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.country}} </mat-cell>
+    </ng-container>
+	
+	<!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+	
+	<!-- Image Column -->
+    <ng-container matColumnDef="imageUrl">
+      <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.imageUrl}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+	</mat-table>
+	<mat-card style="display: flex; justify-content: center; align-items: center"></mat-card>
+  
+	<!--<mat-paginator *ngIf="isLoading" #paginator [pageSizeOptions]="[2, 4, 6]" [pageSize]=2 [length]=6 showFirstLastButtons></mat-paginator>-->  
+	<mat-paginator *ngIf="isLoading" #paginator [pageSizeOptions]="pageSizeOptions"  
+												[pageSize]="pageSize" 
+												[length]="length" (page)="changePage($event)" 
+												showFirstLastButtons>
+	</mat-paginator>
+</div>
