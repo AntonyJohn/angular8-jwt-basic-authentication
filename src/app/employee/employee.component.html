@@ -7,7 +7,7 @@ My Angular Employee App
 <button mat-button routerLink="/" (click)= "authenticationService.logout()">Logout</button></mat-toolbar>
 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
 
-<div class="mat-elevation-z8" *ngIf="isLoading">
+<div class="container mat-elevation-z8" *ngIf="isLoading">
 	<mat-table #table [dataSource]="dataSource">
     <!-- ID Column -->
     <ng-container matColumnDef="id">
@@ -84,8 +84,7 @@ My Angular Employee App
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 	</mat-table>
-	<mat-card style="display: flex; justify-content: center; align-items: center"></mat-card>
-  
+	
 	<!--<mat-paginator *ngIf="isLoading" #paginator [pageSizeOptions]="[2, 4, 6]" [pageSize]=2 [length]=6 showFirstLastButtons></mat-paginator>-->  
 	<mat-paginator *ngIf="isLoading" #paginator [pageSizeOptions]="pageSizeOptions"  
 												[pageSize]="pageSize" 

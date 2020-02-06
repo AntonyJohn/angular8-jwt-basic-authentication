@@ -27,7 +27,7 @@ export class EmployeeComponent implements OnInit {
 	error = '';	
 	
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-	@ViewChild(MatPaginator, {static: false}) dataSource: MatTableDataSource<Employee>;	
+	dataSource = new MatTableDataSource();	
 	displayedColumns: string[] = ['id', 'firstName', 'lastName', 'company'];
 	
 	constructor(private authenticationService: AuthenticationService,
@@ -44,7 +44,7 @@ export class EmployeeComponent implements OnInit {
 					}
 				}
 				setTimeout(() => {			  				
-					this.dataSource = new MatTableDataSource(this.employees);
+					this.dataSource.data = this.employees;
 					console.log(this.dataSource);
 					this.dataSource.paginator = this.paginator;
 					this.length=this.employeesAll.length;
@@ -74,7 +74,7 @@ export class EmployeeComponent implements OnInit {
 		this.employees.length = 0;
 		
 		// Define navPageSize when navigating to next page
-		this.navPageSize = event.pageSize * (event.pageIndex + 1);
+		this.navPageSize = event.pageSize * (event.pageIndex + 1); // API starts 1, Mat-Table starts at 0
 				
 		let navPageStartIndex = this.navPageSize - event.pageSize;
 		
@@ -86,6 +86,6 @@ export class EmployeeComponent implements OnInit {
 		for(let i=navPageStartIndex; i<this.navPageSize; i++){
 			this.employees[j++] = this.employeesAll[i];			
 		}
-		this.dataSource = new MatTableDataSource(this.employees);		
+		this.dataSource.data = this.employees;		
 	}
 }
