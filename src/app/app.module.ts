@@ -23,15 +23,20 @@ import { MatToolbarModule,
   MatDividerModule,
   MatListModule,
   MatTableModule,
-  MatPaginatorModule} from '@angular/material';
+  MatPaginatorModule,
+  MatFormFieldModule,
+   MatInputModule,
+   MatDialogModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeDialogComponent } from './employee-dialog/employee-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    EmployeeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	MatDividerModule,
 	MatListModule,
 	MatTableModule,
-	MatPaginatorModule
+	MatPaginatorModule,
+	MatFormFieldModule,
+    MatInputModule,
+	MatDialogModule
   ],
   providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -56,6 +64,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         // provider used to create fake backend
         fakeBackendProvider
 	],
+	 entryComponents: [
+    EmployeeDialogComponent // THE MAGIC HAPPENDS HERE
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

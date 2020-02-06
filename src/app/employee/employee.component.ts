@@ -1,8 +1,10 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { Component, ViewChild, OnInit, Inject } from '@angular/core';
+import { MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
 
 import { AuthenticationService, EmployeeService } from '@app/_services';
 import { Employee } from '@app/_models';
+
+import { EmployeeDialogComponent } from '@app/employee-dialog/employee-dialog.component';
 
 import { first } from 'rxjs/operators';
 
@@ -31,7 +33,8 @@ export class EmployeeComponent implements OnInit {
 	displayedColumns: string[] = ['id', 'firstName', 'lastName', 'company'];
 	
 	constructor(private authenticationService: AuthenticationService,
-				private employeeService: EmployeeService) { }
+				private employeeService: EmployeeService,
+				public dialog: MatDialog) { }
   
 	ngOnInit() {	
 		this.loadAllEmployees((data_) => {
@@ -88,4 +91,19 @@ export class EmployeeComponent implements OnInit {
 		}
 		this.dataSource.data = this.employees;		
 	}
+	
+	// Invoke this method to view the particular employee details
+	openPopup(tableIndex){
+		let selectedIndex = tableIndex;
+		let dialogRef = this.dialog.open(EmployeeDialogComponent, {
+		  width: '600px', 
+		  height: '400px',
+		  data: this.employees[selectedIndex]
+		});
+		dialogRef.afterClosed().subscribe(result => {
+		  console.log('The dialog was closed');
+		});
+		
+	}
 }
+

@@ -12,7 +12,9 @@ My Angular Employee App
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      <mat-cell *matCellDef="let element; let i = index;"> 
+	  <a (click)="openPopup(i)" class="mat-row-link">{{element.id}} </a>
+	  </mat-cell>
     </ng-container>
 
     <!-- First Name Column -->

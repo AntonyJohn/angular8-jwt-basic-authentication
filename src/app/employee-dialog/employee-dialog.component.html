@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Employee Details</h1>
+
+<div mat-dialog-content>
+	<mat-form-field>
+		<mat-label>First Name</mat-label>
+		<input matInput [value]="data.firstName">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Last Name</mat-label>
+		<input matInput [value]="data.lastName">
+	</mat-form-field> 
+	<mat-form-field>
+		<mat-label>Company</mat-label>
+		<input matInput [value]="data.company">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Job Title</mat-label>
+		<input matInput [value]="data.jobTitle">
+	</mat-form-field> 
+	<mat-form-field>
+		<mat-label>Street</mat-label>
+		<input matInput [value]="data.street">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>City</mat-label>
+		<input matInput [value]="data.city">
+	</mat-form-field> 
+	<mat-form-field>
+		<mat-label>State</mat-label>
+		<input matInput [value]="data.state">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Country</mat-label>
+		<input matInput [value]="data.country">
+	</mat-form-field> 
+	<mat-form-field>
+		<mat-label>E-mail</mat-label>
+		<input matInput [value]="data.email">
+	</mat-form-field> 
+</div>
+<div mat-dialog-actions>  
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Close</button>
+</div>

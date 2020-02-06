@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+	<mat-form-field>
+		<mat-label>First Name</mat-label>
+		<input matInput [value]="data[0].firstName">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Last Name</mat-label>
+		<input matInput [value]="data[0].lastName">
+	</mat-form-field> 
+	<mat-form-field>
+		<mat-label>Company</mat-label>
+		<input matInput [value]="data[0].company">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Job Title</mat-label>
+		<input matInput [value]="data[0].jobTitle">
+	</mat-form-field> 
+	<mat-form-field>
+		<mat-label>Street</mat-label>
+		<input matInput [value]="data[0].street">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>City</mat-label>
+		<input matInput [value]="data[0].city">
+	</mat-form-field> 
+	<mat-form-field>
+		<mat-label>State</mat-label>
+		<input matInput [value]="data[0].state">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Country</mat-label>
+		<input matInput [value]="data[0].country">
+	</mat-form-field> 
+	<mat-form-field>
+		<mat-label>E-mail</mat-label>
+		<input matInput [value]="data[0].email">
+	</mat-form-field> 
+</div>
+<div mat-dialog-actions>  
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Close</button>
+</div>
