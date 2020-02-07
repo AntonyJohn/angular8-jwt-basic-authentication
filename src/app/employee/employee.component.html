@@ -12,7 +12,8 @@ My Angular Employee App
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-      <mat-cell *matCellDef="let element; let i = index;"> {{element.id}}	  
+      <mat-cell *matCellDef="let element; let i = index;let row;"> 
+		<a (click)="openPopup(row,'view')" class="mat-row-link"> <span style="text-decoration:underline;cursor:pointer;">{{element.id}} </span></a>
 	  </mat-cell>
     </ng-container>
 
@@ -82,8 +83,15 @@ My Angular Employee App
       <mat-cell *matCellDef="let element"> {{element.imageUrl}} </mat-cell>
     </ng-container>
 
+	<ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index;let row;">
+	  <a (click)="openPopup(row,'update')" class="mat-row-link"> <span style="text-decoration:underline;cursor:pointer;"> Edit </span></a>
+	  </mat-cell>
+    </ng-container> 
+	
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openPopup(row)" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
 	</mat-table>
 	
 	<!--<mat-paginator *ngIf="isLoading" #paginator [pageSizeOptions]="[2, 4, 6]" [pageSize]=2 [length]=6 showFirstLastButtons></mat-paginator>-->  

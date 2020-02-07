@@ -30,7 +30,7 @@ export class EmployeeComponent implements OnInit {
 	
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 	dataSource = new MatTableDataSource();	
-	displayedColumns: string[] = ['id', 'firstName', 'lastName', 'company'];
+	displayedColumns: string[] = ['id', 'firstName', 'lastName', 'company', 'edit'];
 	
 	constructor(private authenticationService: AuthenticationService,
 				private employeeService: EmployeeService,
@@ -93,12 +93,16 @@ export class EmployeeComponent implements OnInit {
 	}
 	
 	// Invoke this method to view the particular employee details
-	openPopup(selectedRow){
+	openPopup(selectedRow, mode){
 		let dialogRef = this.dialog.open(EmployeeDialogComponent, {
 		  width: '600px', 
 		  height: '400px',
 		  data: selectedRow
 		});
+		let instance = dialogRef.componentInstance;
+		
+		instance.mode = mode;
+		console.log('instance:'+instance.mode)
 		dialogRef.afterClosed().subscribe(result => {
 		  console.log('The dialog was closed');
 		});

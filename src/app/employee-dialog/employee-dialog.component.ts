@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-dialog',
@@ -9,16 +9,34 @@ import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angul
 })
 export class EmployeeDialogComponent implements OnInit {
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any, // Define data object to overcome undefined error
-    public dialogRef: MatDialogRef<EmployeeDialogComponent> ) {
-
+	employeeForm: FormGroup;
+	public mode = "";
+	public modeFlag: boolean = false;
+	constructor(
+		private formBuilder: FormBuilder,
+		@Inject(MAT_DIALOG_DATA) public data: any, // Define data object to overcome undefined error
+		public dialogRef: MatDialogRef<EmployeeDialogComponent> ) {
    }
 
-  ngOnInit() {
+  ngOnInit() {  
+	  if(this.mode === "view") {
+		this.modeFlag = true;
+	  }
+	  
+	  this.employeeForm = this.formBuilder.group({            
+			firstName: [{ value: '', disabled: this.modeFlag }, [Validators.required]],
+            lastName: [{ value: '', disabled: this.modeFlag }, [Validators.required]],
+			company: [{ value: '', disabled: this.modeFlag }],
+			jobTitle: [{ value: '', disabled: this.modeFlag }],
+			street: [{ value: '', disabled: this.modeFlag }],
+			city: [{ value: '', disabled: this.modeFlag }],
+			state: [{ value: '', disabled: this.modeFlag }],
+			country: [{ value: '', disabled: this.modeFlag }],
+			email: [{ value: '', disabled: this.modeFlag }]			
+        });
   }
 
-  closeDialog(){
+  closeDialog(){	
     this.dialogRef.close({event:'Cancel'});
   }
 }
