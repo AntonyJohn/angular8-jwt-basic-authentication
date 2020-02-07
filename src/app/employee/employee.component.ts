@@ -93,17 +93,16 @@ export class EmployeeComponent implements OnInit {
 	}
 	
 	// Invoke this method to view the particular employee details
-	openPopup(tableIndex){
-		let selectedIndex = tableIndex;
+	openPopup(selectedRow){
 		let dialogRef = this.dialog.open(EmployeeDialogComponent, {
 		  width: '600px', 
 		  height: '400px',
-		  data: this.employees[selectedIndex]
+		  data: selectedRow
 		});
 		dialogRef.afterClosed().subscribe(result => {
 		  console.log('The dialog was closed');
 		});
 		
-	}
+	}	
 }
 

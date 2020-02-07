@@ -1,5 +1,5 @@
-import { Component, ViewChild, OnInit, Inject } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angul
 export class EmployeeDialogComponent implements OnInit {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any, // Define data object to overcome undefined error
     public dialogRef: MatDialogRef<EmployeeDialogComponent> ) {
 
    }
