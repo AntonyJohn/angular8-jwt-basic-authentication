@@ -2,6 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
+import { EmployeeService } from '@app/_services';
+import { Employee } from '@app/_models';
+
+import { first } from 'rxjs/operators';
+
 @Component({
   selector: 'app-employee-dialog',
   templateUrl: './employee-dialog.component.html',
@@ -15,7 +20,8 @@ export class EmployeeDialogComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		@Inject(MAT_DIALOG_DATA) public data: any, // Define data object to overcome undefined error
-		public dialogRef: MatDialogRef<EmployeeDialogComponent> ) {
+		public dialogRef: MatDialogRef<EmployeeDialogComponent>,
+		private employeeService: EmployeeService) {
    }
 
   ngOnInit() {  
@@ -23,7 +29,8 @@ export class EmployeeDialogComponent implements OnInit {
 		this.modeFlag = true;
 	  }
 	  
-	  this.employeeForm = this.formBuilder.group({            
+	  this.employeeForm = this.formBuilder.group({ 
+			id: [{ value: '', disabled: this.modeFlag }],
 			firstName: [{ value: '', disabled: this.modeFlag }, [Validators.required]],
             lastName: [{ value: '', disabled: this.modeFlag }, [Validators.required]],
 			company: [{ value: '', disabled: this.modeFlag }],
@@ -37,6 +44,16 @@ export class EmployeeDialogComponent implements OnInit {
   }
 
   closeDialog(){	
-    this.dialogRef.close({event:'Cancel'});
+    this.dialogRef.close({event:'Close'});
+  }
+  
+  update(employee) {
+	this.employeeService.update(employee).pipe().subscribe(employee => {
+		this.dialogRef.close({event:'Update'});
+		return employee;						
+		}, err => {
+			console.log('err',err);
+			//this.error = err;
+		});
   }
 }

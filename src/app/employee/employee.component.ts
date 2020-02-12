@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 
 import { AuthenticationService, EmployeeService } from '@app/_services';
 import { Employee } from '@app/_models';
@@ -34,7 +35,8 @@ export class EmployeeComponent implements OnInit {
 	
 	constructor(private authenticationService: AuthenticationService,
 				private employeeService: EmployeeService,
-				public dialog: MatDialog) { }
+				public dialog: MatDialog,
+				private router: Router) { }
   
 	ngOnInit() {	
 		this.loadAllEmployees((data_) => {
@@ -107,6 +109,23 @@ export class EmployeeComponent implements OnInit {
 		  console.log('The dialog was closed');
 		});
 		
-	}	
+	}
+
+	delete(employee, mode) {
+	
+		if(confirm("Are you sure to delete "+employee.id)) {
+		this.employeeService.delete(employee.id).pipe().subscribe(employee => {
+			//this.router.navigate(['/employee']);
+			return employee;						
+		}, err => {
+			console.log('err',err);
+			//this.error = err;
+		});
+		console.log("Implement delete functionality here");
+	  }
+		
+		
+		
+  }
 }
 

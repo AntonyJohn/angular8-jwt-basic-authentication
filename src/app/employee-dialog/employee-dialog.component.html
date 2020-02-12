@@ -1,43 +1,48 @@
 <h1 mat-dialog-title>Employee Details</h1>
 
 <div mat-dialog-content>
+	<mat-form-field [formGroup]="employeeForm" [hidden]="true">
+		<mat-label>Id</mat-label>
+		<input matInput formControlName="id" [(ngModel)]="data.id">
+	</mat-form-field>
 	<mat-form-field [formGroup]="employeeForm">
 		<mat-label>First Name</mat-label>
-		<input matInput formControlName="firstName" [value]="data.firstName">
+		<input matInput formControlName="firstName" [(ngModel)]="data.firstName">
 	</mat-form-field>
 	<mat-form-field [formGroup]="employeeForm">
 		<mat-label>Last Name</mat-label>
-		<input matInput formControlName="lastName" [value]="data.lastName">
+		<input matInput formControlName="lastName" [(ngModel)]="data.lastName">
 	</mat-form-field> 
 	<mat-form-field [formGroup]="employeeForm">
 		<mat-label>Company</mat-label>
-		<input matInput formControlName="company" [value]="data.company">
+		<input matInput formControlName="company" [(ngModel)]="data.company">
 	</mat-form-field>
 	<mat-form-field [formGroup]="employeeForm">
 		<mat-label>Job Title</mat-label>
-		<input matInput formControlName="jobTitle" [value]="data.jobTitle">
+		<input matInput formControlName="jobTitle" [(ngModel)]="data.jobTitle">
 	</mat-form-field> 
 	<mat-form-field [formGroup]="employeeForm">
 		<mat-label>Street</mat-label>
-		<input matInput formControlName="street" [value]="data.street">
+		<input matInput formControlName="street" [(ngModel)]="data.street">
 	</mat-form-field>
 	<mat-form-field [formGroup]="employeeForm">
 		<mat-label>City</mat-label>
-		<input matInput formControlName="city" [value]="data.city">
+		<input matInput formControlName="city" [(ngModel)]="data.city">
 	</mat-form-field> 
 	<mat-form-field [formGroup]="employeeForm">
 		<mat-label>State</mat-label>
-		<input matInput formControlName="state" [value]="data.state">
+		<input matInput formControlName="state" [(ngModel)]="data.state">
 	</mat-form-field>
 	<mat-form-field [formGroup]="employeeForm">
 		<mat-label>Country</mat-label>
-		<input matInput formControlName="country" [value]="data.country">
+		<input matInput formControlName="country" [(ngModel)]="data.country">
 	</mat-form-field> 
 	<mat-form-field [formGroup]="employeeForm">
 		<mat-label>E-mail</mat-label>
-		<input matInput formControlName="email" [value]="data.email">
+		<input matInput formControlName="email" [(ngModel)]="data.email">
 	</mat-form-field> 
 </div>
 <div mat-dialog-actions>  
   <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Close</button>
+  <button mat-button (click)="update(this.data)" mat-flat-button color="warn">Update</button>
 </div>
