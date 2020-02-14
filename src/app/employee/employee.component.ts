@@ -1,6 +1,5 @@
-import { Component, ViewChild, OnInit, Inject } from '@angular/core';
+import { Component, ViewChild, OnInit  } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
 
 import { AuthenticationService, EmployeeService } from '@app/_services';
 import { Employee } from '@app/_models';
@@ -17,16 +16,21 @@ import { first } from 'rxjs/operators';
 export class EmployeeComponent implements OnInit {
 	
 	// datasource array
-	employeesAll = [];	
-	employees = [];		
+	employeesAll = [];	// Overall employee details array
+	employees = [];		// employee details array for per page
 	
 	// Pagination properties
-	pageSizeOptions = [4, 8, 50];
-	navPageSize:number = 0;	
-	pageSize: number = 0;
-	length: number = 0;	
-	isLoading=false;
+	pageSizeOptions = [4, 8, 50];  	// Define page size options
+	pageIndex: number = 0; 			// Actual Page Index for current page
+	pageSize: number = 0; 			// Total number of records per page
+	length: number = 0; 			// Total length of the table
 	
+	// Pagination properties while page navigation
+	navPageSize:number = 0;			// Total number of records per page in page navigation	
+	navPageStartIndex:number = 0;	// Set the employeesAll[] start index when page navigation
+	navPageIndex:number = 0;		// Set the page index value when Page Navigation
+			
+	isLoading=false;	
 	error = '';	
 	
 	@ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -35,8 +39,7 @@ export class EmployeeComponent implements OnInit {
 	
 	constructor(private authenticationService: AuthenticationService,
 				private employeeService: EmployeeService,
-				public dialog: MatDialog,
-				private router: Router) { }
+				public dialog: MatDialog) { }
   
 	ngOnInit() {	
 		this.loadAllEmployees((data_) => {
@@ -78,17 +81,26 @@ export class EmployeeComponent implements OnInit {
 		// To flush the employees array
 		this.employees.length = 0;
 		
-		// Define navPageSize when navigating to next page
+		// Define navPageIndex when navigating to next/ previous page
+		this.pageIndex = event.pageIndex;
+		this.navPageIndex = this.pageIndex + 1;
+		console.log("navPageIndex:"+this.navPageIndex)
+		
+		// Define navPageSize when navigating to next/ previous page
 		this.navPageSize = event.pageSize * (event.pageIndex + 1); // API starts 1, Mat-Table starts at 0
-				
-		let navPageStartIndex = this.navPageSize - event.pageSize;
+		console.log("navPageSize:"+this.navPageSize)
+		
+		// Define navPageStartIndex for employees[] when navigating to next/ previous page
+		this.navPageStartIndex = this.navPageSize - event.pageSize;
+		console.log("navPageStartIndex:"+this.navPageStartIndex)
 		
 		// Define navPageSize when navigating to last page to avoid blank row insert in mat-table
 		if(this.navPageSize > this.employeesAll.length) {
 			this.navPageSize = this.employeesAll.length;
 		}
 		
-		for(let i=navPageStartIndex; i<this.navPageSize; i++){
+		// Add employee details from employeeAll[] into employees[] Array based on page navigation condition
+		for(let i=this.navPageStartIndex; i<this.navPageSize; i++){
 			this.employees[j++] = this.employeesAll[i];			
 		}
 		this.dataSource.data = this.employees;		
@@ -112,11 +124,47 @@ export class EmployeeComponent implements OnInit {
 	}
 
 	delete(employee, mode) {
-	
-		if(confirm("Are you sure to delete "+employee.id)) {
-		this.employeeService.delete(employee.id).pipe().subscribe(employee => {
-			//this.router.navigate(['/employee']);
-			return employee;						
+		let j = 0;
+		if(confirm("Are you sure to delete "+employee.firstName)) {
+		this.employeeService.delete(employee.id).pipe().subscribe(res => {
+			
+			// To flush the employees array while delete
+			this.employees.length = 0;
+		
+			// Remove the record from employeesAll[]
+			for(let i=0; i<this.employeesAll.length; i++){			
+				if (this.employeesAll[i].id === employee.id) {
+					this.employeesAll.splice(i,1);
+				}
+			}
+			console.log("navPageIndex:"+this.navPageIndex)
+			// Define navPageSize when delete the row from table
+			this.navPageSize = this.pageSize * this.navPageIndex;
+			console.log("navPageSize:"+this.navPageSize)
+			
+			// Define navPageStartIndex for employees[] when delete the row from table
+			this.navPageStartIndex = this.navPageSize - this.pageSize;
+			console.log("navPageStartIndex:"+this.navPageStartIndex)
+			
+            // Define navPageSize when navigating to last page to avoid blank row insert in mat-table
+			if(this.navPageSize > this.employeesAll.length) {
+				this.navPageSize = this.employeesAll.length;
+			}
+						
+			// Add employee details from employeeAll[] into employees[] Array based on page navigation condition
+			for(let ii=this.navPageStartIndex; ii<this.navPageSize; ii++){
+				this.employees[j++] = this.employeesAll[ii];			
+			}
+			this.length=this.employeesAll.length;
+			if(this.employees.length === 0 && this.length != 0) {			
+				this.paginator.pageIndex = (this.pageIndex - 1), // number of the page you want to jump.
+					this.paginator.page.next({      
+					  pageIndex: (this.pageIndex - 1),
+					  pageSize: this.pageSize,
+					  length: this.length
+					});
+			}
+			this.dataSource.data = this.employees.length == 0 ? this.employeesAll : this.employees;		        					
 		}, err => {
 			console.log('err',err);
 			//this.error = err;
