@@ -23,4 +23,7 @@ employee: [];
 		return this.http.delete<Employee>(`${environment.apiUrl}/employees/`+empId);
     }
 	
+	add(employee: Employee) : Observable<Employee> {
+		return this.http.post<Employee>(`${environment.apiUrl}/employees/`,employee);
+    }
 }

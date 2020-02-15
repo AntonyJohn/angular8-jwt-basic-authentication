@@ -8,6 +8,9 @@ My Angular Employee App
 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
 
 <div class="container mat-elevation-z8" *ngIf="isLoading">
+	<div align="right">
+		<a mat-button (click)="openPopup('','add')" class="mat-row-link" mat-flat-button color="primary"> Add </a>
+	</div>
 	<mat-table #table [dataSource]="dataSource">
     <!-- ID Column -->
     <ng-container matColumnDef="id">
@@ -87,7 +90,7 @@ My Angular Employee App
       <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
       <mat-cell *matCellDef="let element; let i = index;let row;">
 	  <a mat-button (click)="openPopup(row,'update')" class="mat-row-link" mat-flat-button color="warn"> Edit </a> / 
-	  <a mat-button (click)="delete(row, 'delete')" mat-flat-button color="warn"> Delete </a>
+	  <a mat-button (click)="delete(row)" mat-flat-button color="warn"> Delete </a>
 	  </mat-cell>
     </ng-container> 
 	

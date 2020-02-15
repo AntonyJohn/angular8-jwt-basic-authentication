@@ -44,5 +44,6 @@
 </div>
 <div mat-dialog-actions>  
   <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Close</button>
-  <button *ngIf="this.modeFlag != true;" mat-button (click)="update(this.data)" mat-flat-button color="warn">Update</button>
+  <button *ngIf="this.mode == 'update';" mat-button (click)="update(this.data)" mat-flat-button color="warn">Update</button>
+  <button *ngIf="this.mode == 'add';" mat-button (click)="add(this.data)" mat-flat-button color="warn">Save</button>
 </div>

@@ -1,64 +1,8 @@
 {
   "employees": [
     {
-      "id": 1,
-      "firstName": "Antony",
-      "lastName": "m",
-      "company": "CTS",
-      "jobTitle": "Associate",
-      "mobilePhone": "1234567890",
-      "street": "South Gate",
-      "city": "Chennai",
-      "state": "TN",
-      "country": "india",
-      "email": "test@gmail.com",
-      "imageUrl": "https://source.unsplash.com/1600x900?product"
-    },
-    {
-      "id": 2,
-      "firstName": "John",
-      "lastName": "m",
-      "company": "TCS",
-      "jobTitle": "Senior Associate",
-      "mobilePhone": "0987654321",
-      "street": "South Gate",
-      "city": "Madurai",
-      "state": "TN",
-      "country": "india",
-      "email": "test1@gmail.com",
-      "imageUrl": "https://source.unsplash.com/1600x900?product"
-    },
-    {
-      "id": 3,
-      "firstName": "Jeff",
-      "lastName": "s",
-      "company": "TCS",
-      "jobTitle": "Associate",
-      "mobilePhone": "3334444556",
-      "street": "South Gate",
-      "city": "Chennai",
-      "state": "TN",
-      "country": "india",
-      "email": "test2@gmail.com",
-      "imageUrl": "https://source.unsplash.com/1600x900?product"
-    },
-	{
-         "id":4,
-         "firstName":"Arif",
-         "lastName":"a",
-         "company":"Capgemini",         
-         "jobTitle":"Tech Lead",
-		 "mobilePhone":"6789879899",
-		 "street":"South Gate",
-		 "city":"Chennai",
-		 "state":"TN",
-		 "country":"india",
-		 "email":"test2@gmail.com",
-		 "imageUrl":"https://source.unsplash.com/1600x900?product"      
-	},
-    {
       "id": 5,
-      "firstName": "Raja",
+      "firstName": "Raja123",
       "lastName": "s",
       "company": "Scope International",
       "jobTitle": "Tech Lead",
@@ -68,7 +12,8 @@
       "state": "TN",
       "country": "india",
       "email": "test2@gmail.com",
-      "imageUrl": "https://source.unsplash.com/1600x900?product"
+      "imageUrl": "https://source.unsplash.com/1600x900?product",
+      "hovered": false
     },
     {
       "id": 6,
@@ -83,6 +28,48 @@
       "country": "india",
       "email": "test2@gmail.com",
       "imageUrl": "https://source.unsplash.com/1600x900?product"
+    },
+    {
+      "id": 12,
+      "firstName": "ken",
+      "lastName": "m",
+      "company": "3i",
+      "jobTitle": "associate manager",
+      "mobilePhone": "",
+      "street": "South Gate",
+      "city": "Madurai",
+      "state": "TN",
+      "country": "India",
+      "email": "antony@gmail.com",
+      "imageUrl": ""
+    },
+    {
+      "id": 13,
+      "firstName": "yyy",
+      "lastName": "y",
+      "company": "ppp",
+      "jobTitle": "pp",
+      "mobilePhone": "",
+      "street": "pp",
+      "city": "pp",
+      "state": "pp",
+      "country": "pp",
+      "email": "pp@te.com",
+      "imageUrl": ""
+    },
+    {
+      "id": 14,
+      "firstName": "ttoo",
+      "lastName": "t",
+      "company": "dsafva",
+      "jobTitle": "asdf",
+      "mobilePhone": "",
+      "street": "as",
+      "city": "ads",
+      "state": "asd",
+      "country": "asd",
+      "email": "yy@kk.com",
+      "imageUrl": ""
     }
   ],
   "users": [

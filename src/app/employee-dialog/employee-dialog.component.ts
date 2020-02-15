@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { EmployeeService } from '@app/_services';
 import { Employee } from '@app/_models';
@@ -21,7 +22,8 @@ export class EmployeeDialogComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		@Inject(MAT_DIALOG_DATA) public data: any, // Define data object to overcome undefined error
 		public dialogRef: MatDialogRef<EmployeeDialogComponent>,
-		private employeeService: EmployeeService) {
+		private employeeService: EmployeeService,
+		private router: Router) {
    }
 
   ngOnInit() {  
@@ -51,6 +53,16 @@ export class EmployeeDialogComponent implements OnInit {
 	this.employeeService.update(employee).pipe().subscribe(employee => {
 		this.dialogRef.close({event:'Update'});
 		return employee;						
+		}, err => {
+			console.log('err',err);
+			//this.error = err;
+		});
+  }
+  
+  add(employee) {
+	this.employeeService.add(employee).pipe().subscribe(employee => {
+		this.dialogRef.close({event:'Add'});
+		this.router.navigate(['/employee']);						
 		}, err => {
 			console.log('err',err);
 			//this.error = err;

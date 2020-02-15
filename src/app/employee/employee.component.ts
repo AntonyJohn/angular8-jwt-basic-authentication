@@ -108,6 +108,9 @@ export class EmployeeComponent implements OnInit {
 	
 	// Invoke this method to view the particular employee details
 	openPopup(selectedRow, mode){
+		if(mode === 'add') {
+			selectedRow = new Employee();
+		}
 		let dialogRef = this.dialog.open(EmployeeDialogComponent, {
 		  width: '600px', 
 		  height: '400px',
@@ -123,7 +126,7 @@ export class EmployeeComponent implements OnInit {
 		
 	}
 
-	delete(employee, mode) {
+	delete(employee) {
 		let j = 0;
 		if(confirm("Are you sure to delete "+employee.firstName)) {
 		this.employeeService.delete(employee.id).pipe().subscribe(res => {
