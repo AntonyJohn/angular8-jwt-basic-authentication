@@ -1,45 +1,63 @@
 <h1 mat-dialog-title>Employee Details</h1>
-
+<form [formGroup]="employeeForm">
 <div mat-dialog-content>
-	<mat-form-field [formGroup]="employeeForm" [hidden]="true">
+	<mat-form-field [hidden]="true">
 		<mat-label>Id</mat-label>
 		<input matInput formControlName="id" [(ngModel)]="data.id">
 	</mat-form-field>
-	<mat-form-field [formGroup]="employeeForm">
+	<mat-form-field>
 		<mat-label>First Name</mat-label>
 		<input matInput formControlName="firstName" [(ngModel)]="data.firstName">
+		<mat-error *ngIf="employeeForm.get('firstName').hasError('required')">
+		  First Name is Required!
+		</mat-error>
+		<mat-error *ngIf="employeeForm.get('firstName').hasError('minlength')">
+		  First Name should be atleast 4 characters long!
+		</mat-error>
+		<mat-error *ngIf="employeeForm.get('firstName').hasError('maxlength')">
+		  First Name can be atmax n characters long!
+		</mat-error>
 	</mat-form-field>
-	<mat-form-field [formGroup]="employeeForm">
+	<mat-form-field>
 		<mat-label>Last Name</mat-label>
 		<input matInput formControlName="lastName" [(ngModel)]="data.lastName">
+		<mat-error *ngIf="employeeForm.get('lastName').hasError('required')">
+		  Last Name is Required!
+		</mat-error>		
 	</mat-form-field> 
-	<mat-form-field [formGroup]="employeeForm">
+	<mat-form-field>
 		<mat-label>Company</mat-label>
 		<input matInput formControlName="company" [(ngModel)]="data.company">
 	</mat-form-field>
-	<mat-form-field [formGroup]="employeeForm">
+	<mat-form-field>
 		<mat-label>Job Title</mat-label>
 		<input matInput formControlName="jobTitle" [(ngModel)]="data.jobTitle">
 	</mat-form-field> 
-	<mat-form-field [formGroup]="employeeForm">
+	<mat-form-field>
 		<mat-label>Street</mat-label>
 		<input matInput formControlName="street" [(ngModel)]="data.street">
 	</mat-form-field>
-	<mat-form-field [formGroup]="employeeForm">
+	<mat-form-field>
 		<mat-label>City</mat-label>
 		<input matInput formControlName="city" [(ngModel)]="data.city">
 	</mat-form-field> 
-	<mat-form-field [formGroup]="employeeForm">
+	<mat-form-field>
 		<mat-label>State</mat-label>
 		<input matInput formControlName="state" [(ngModel)]="data.state">
 	</mat-form-field>
-	<mat-form-field [formGroup]="employeeForm">
+	<mat-form-field>
 		<mat-label>Country</mat-label>
 		<input matInput formControlName="country" [(ngModel)]="data.country">
 	</mat-form-field> 
-	<mat-form-field [formGroup]="employeeForm">
+	<mat-form-field>
 		<mat-label>E-mail</mat-label>
 		<input matInput formControlName="email" [(ngModel)]="data.email">
+		<mat-error *ngIf="employeeForm.get('email').hasError('required')">
+		  E-mail is Required!
+		</mat-error>
+		<mat-error *ngIf="employeeForm.get('email').hasError('pattern')">
+		  Email must follow this pattern!
+		</mat-error>
 	</mat-form-field> 
 </div>
 <div mat-dialog-actions>  
@@ -47,3 +65,4 @@
   <button *ngIf="this.mode == 'update';" mat-button (click)="update(this.data)" mat-flat-button color="warn">Update</button>
   <button *ngIf="this.mode == 'add';" mat-button (click)="add(this.data)" mat-flat-button color="warn">Save</button>
 </div>
+</form>

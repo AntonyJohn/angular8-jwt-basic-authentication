@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { EmployeeService } from '@app/_services';
 import { Employee } from '@app/_models';
@@ -22,8 +21,7 @@ export class EmployeeDialogComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		@Inject(MAT_DIALOG_DATA) public data: any, // Define data object to overcome undefined error
 		public dialogRef: MatDialogRef<EmployeeDialogComponent>,
-		private employeeService: EmployeeService,
-		private router: Router) {
+		private employeeService: EmployeeService) {
    }
 
   ngOnInit() {  
@@ -33,7 +31,7 @@ export class EmployeeDialogComponent implements OnInit {
 	  
 	  this.employeeForm = this.formBuilder.group({ 
 			id: [{ value: '', disabled: this.modeFlag }],
-			firstName: [{ value: '', disabled: this.modeFlag }, [Validators.required]],
+			firstName: [{ value: '', disabled: this.modeFlag }, [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
             lastName: [{ value: '', disabled: this.modeFlag }, [Validators.required]],
 			company: [{ value: '', disabled: this.modeFlag }],
 			jobTitle: [{ value: '', disabled: this.modeFlag }],
@@ -41,7 +39,7 @@ export class EmployeeDialogComponent implements OnInit {
 			city: [{ value: '', disabled: this.modeFlag }],
 			state: [{ value: '', disabled: this.modeFlag }],
 			country: [{ value: '', disabled: this.modeFlag }],
-			email: [{ value: '', disabled: this.modeFlag }]			
+			email: [{ value: '', disabled: this.modeFlag }, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]]			
         });
   }
 
@@ -50,19 +48,25 @@ export class EmployeeDialogComponent implements OnInit {
   }
   
   update(employee) {
-	this.employeeService.update(employee).pipe().subscribe(employee => {
-		this.dialogRef.close({event:'Update'});
-		return employee;						
+	// stop here if form is invalid
+	if (this.employeeForm.invalid) {
+		return;
+	}
+	this.employeeService.update(employee).pipe().subscribe(employee => {	
+			this.dialogRef.close({event:'Update',data:employee});		
 		}, err => {
 			console.log('err',err);
 			//this.error = err;
 		});
   }
   
-  add(employee) {
+  add(employee) {  
+	// stop here if form is invalid
+	if (this.employeeForm.invalid) {
+		return;
+	}
 	this.employeeService.add(employee).pipe().subscribe(employee => {
-		this.dialogRef.close({event:'Add'});
-		this.router.navigate(['/employee']);						
+			this.dialogRef.close({event:'Add',data:employee});
 		}, err => {
 			console.log('err',err);
 			//this.error = err;

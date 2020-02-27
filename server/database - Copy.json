@@ -104,5 +104,136 @@
       "token": "",
       "role": "Admin"
     }
-  ]
+  ],
+  "countries": [
+    {
+      "id": 1,
+      "countryName": "India",
+      "countryCode": "IND"
+    },
+    {
+      "id": 2,
+      "countryName": "United States Of America",
+      "countryCode": "USA"
+    }
+  ],
+  "states": [
+    {
+      "id": 1,
+      "state": "Mathya Pradhesh",
+      "stateCode": "MP",
+      "countryCode": "IND"
+    },
+    {
+      "id": 2,
+      "state": "Maharashtra",
+      "stateCode": "MH",
+      "countryCode": "IND"
+    },
+    {
+      "id": 3,
+      "state": "Tamil Nadu",
+      "stateCode": "TN",
+      "countryCode": "IND"
+    },
+    {
+      "id": 4,
+      "state": "California",
+      "stateCode": "CA",
+      "countryCode": "USA"
+    },
+    {
+      "id": 5,
+      "state": "New York",
+      "stateCode": "NY",
+      "countryCode": "USA"
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "city": "Chennai",
+      "cityCode": "MAS",
+      "stateCode": "TN"
+    },
+    {
+      "id": 2,
+      "city": "Coimbatore",
+      "cityCode": "CBE",
+      "stateCode": "TN"
+    },
+    {
+      "id": 3,
+      "city": "Madurai",
+      "cityCode": "MDU",
+      "stateCode": "TN"
+    },
+    {
+      "id": 4,
+      "city": "Mumbai",
+      "cityCode": "MB"
+    },
+    {
+      "id": 5,
+      "city": "Delhi",
+      "cityCode": "DL"
+    },
+    {
+      "id": 6,
+      "city": "CA",
+      "cityCode": "CA"
+    },
+    {
+      "id": 7,
+      "city": "NY",
+      "cityCode": "NY"
+    }
+  ],
+  "countriesTemp": {
+    "USA": {
+      "Alabama": [
+        "Montgomery",
+        "Birmingham"
+      ],
+      "California": [
+        "Sacramento",
+        "Fremont"
+      ],
+      "Illinois": [
+        "Springfield",
+        "Chicago"
+      ]
+    },
+    "India": {
+      "Maharashtra": [
+        "Pune",
+        "Mumbai",
+        "Nagpur",
+        "Akola"
+      ],
+      "Madhya Pradesh": [
+        "Indore",
+        "Bhopal",
+        "Jabalpur"
+      ],
+      "Rajasthan": [
+        "Jaipur",
+        "Ajmer",
+        "Jodhpur"
+      ],
+      "TamilNadu": [
+        "Chennai",
+        "Coimbatore",
+        "Madurai"
+      ]
+    },
+    "Australia": {
+      "New South Wales": [
+        "Sydney"
+      ],
+      "Victoria": [
+        "Melbourne"
+      ]
+    }
+  }
 }

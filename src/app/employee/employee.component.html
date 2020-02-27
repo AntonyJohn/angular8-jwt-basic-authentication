@@ -6,8 +6,8 @@ My Angular Employee App
 <button mat-button routerLink="/employee">Employee</button>
 <button mat-button routerLink="/" (click)= "authenticationService.logout()">Logout</button></mat-toolbar>
 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
-
 <div class="container mat-elevation-z8" *ngIf="isLoading">
+<mat-spinner *ngIf="!isLoading"></mat-spinner>
 	<div align="right">
 		<a mat-button (click)="openPopup('','add')" class="mat-row-link" mat-flat-button color="primary"> Add </a>
 	</div>

@@ -1,8 +1,52 @@
 {
   "employees": [
     {
+      "id": 1,
+      "firstName": "Antonyh",
+      "lastName": "john",
+      "company": "CTS",
+      "jobTitle": "Associate",
+      "mobilePhone": "1234567890",
+      "street": "South Gate",
+      "city": "Chennai",
+      "state": "TN",
+      "country": "india",
+      "email": "test@gmail.com",
+      "imageUrl": "https://source.unsplash.com/1600x900?product",
+      "hovered": false
+    },
+    {
+      "id": 2,
+      "firstName": "Johnkk",
+      "lastName": "m",
+      "company": "TCS",
+      "jobTitle": "Senior Associate",
+      "mobilePhone": "0987654321",
+      "street": "South Gate",
+      "city": "Madurai",
+      "state": "TN",
+      "country": "india",
+      "email": "test@ggg.com",
+      "imageUrl": "https://source.unsplash.com/1600x900?product",
+      "hovered": false
+    },
+    {
+      "id": 3,
+      "firstName": "Jeff",
+      "lastName": "s",
+      "company": "TCS",
+      "jobTitle": "Associate",
+      "mobilePhone": "3334444556",
+      "street": "South Gate",
+      "city": "Chennai",
+      "state": "TN",
+      "country": "india",
+      "email": "test2@gmail.com",
+      "imageUrl": "https://source.unsplash.com/1600x900?product"
+    },
+    {
       "id": 5,
-      "firstName": "Raja123",
+      "firstName": "Raja",
       "lastName": "s",
       "company": "Scope International",
       "jobTitle": "Tech Lead",
@@ -12,8 +56,7 @@
       "state": "TN",
       "country": "india",
       "email": "test2@gmail.com",
-      "imageUrl": "https://source.unsplash.com/1600x900?product",
-      "hovered": false
+      "imageUrl": "https://source.unsplash.com/1600x900?product"
     },
     {
       "id": 6,
@@ -28,48 +71,6 @@
       "country": "india",
       "email": "test2@gmail.com",
       "imageUrl": "https://source.unsplash.com/1600x900?product"
-    },
-    {
-      "id": 12,
-      "firstName": "ken",
-      "lastName": "m",
-      "company": "3i",
-      "jobTitle": "associate manager",
-      "mobilePhone": "",
-      "street": "South Gate",
-      "city": "Madurai",
-      "state": "TN",
-      "country": "India",
-      "email": "antony@gmail.com",
-      "imageUrl": ""
-    },
-    {
-      "id": 13,
-      "firstName": "yyy",
-      "lastName": "y",
-      "company": "ppp",
-      "jobTitle": "pp",
-      "mobilePhone": "",
-      "street": "pp",
-      "city": "pp",
-      "state": "pp",
-      "country": "pp",
-      "email": "pp@te.com",
-      "imageUrl": ""
-    },
-    {
-      "id": 14,
-      "firstName": "ttoo",
-      "lastName": "t",
-      "company": "dsafva",
-      "jobTitle": "asdf",
-      "mobilePhone": "",
-      "street": "as",
-      "city": "ads",
-      "state": "asd",
-      "country": "asd",
-      "email": "yy@kk.com",
-      "imageUrl": ""
     }
   ],
   "users": [
@@ -91,5 +92,136 @@
       "token": "",
       "role": "Admin"
     }
-  ]
+  ],
+  "countries": [
+    {
+      "id": 1,
+      "countryName": "India",
+      "countryCode": "IND"
+    },
+    {
+      "id": 2,
+      "countryName": "United States Of America",
+      "countryCode": "USA"
+    }
+  ],
+  "states": [
+    {
+      "id": 1,
+      "state": "Mathya Pradhesh",
+      "stateCode": "MP",
+      "countryCode": "IND"
+    },
+    {
+      "id": 2,
+      "state": "Maharashtra",
+      "stateCode": "MH",
+      "countryCode": "IND"
+    },
+    {
+      "id": 3,
+      "state": "Tamil Nadu",
+      "stateCode": "TN",
+      "countryCode": "IND"
+    },
+    {
+      "id": 4,
+      "state": "California",
+      "stateCode": "CA",
+      "countryCode": "USA"
+    },
+    {
+      "id": 5,
+      "state": "New York",
+      "stateCode": "NY",
+      "countryCode": "USA"
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "city": "Chennai",
+      "cityCode": "MAS",
+      "stateCode": "TN"
+    },
+    {
+      "id": 2,
+      "city": "Coimbatore",
+      "cityCode": "CBE",
+      "stateCode": "TN"
+    },
+    {
+      "id": 3,
+      "city": "Madurai",
+      "cityCode": "MDU",
+      "stateCode": "TN"
+    },
+    {
+      "id": 4,
+      "city": "Mumbai",
+      "cityCode": "MB"
+    },
+    {
+      "id": 5,
+      "city": "Delhi",
+      "cityCode": "DL"
+    },
+    {
+      "id": 6,
+      "city": "CA",
+      "cityCode": "CA"
+    },
+    {
+      "id": 7,
+      "city": "NY",
+      "cityCode": "NY"
+    }
+  ],
+  "countriesTemp": {
+    "USA": {
+      "Alabama": [
+        "Montgomery",
+        "Birmingham"
+      ],
+      "California": [
+        "Sacramento",
+        "Fremont"
+      ],
+      "Illinois": [
+        "Springfield",
+        "Chicago"
+      ]
+    },
+    "India": {
+      "Maharashtra": [
+        "Pune",
+        "Mumbai",
+        "Nagpur",
+        "Akola"
+      ],
+      "Madhya Pradesh": [
+        "Indore",
+        "Bhopal",
+        "Jabalpur"
+      ],
+      "Rajasthan": [
+        "Jaipur",
+        "Ajmer",
+        "Jodhpur"
+      ],
+      "TamilNadu": [
+        "Chennai",
+        "Coimbatore",
+        "Madurai"
+      ]
+    },
+    "Australia": {
+      "New South Wales": [
+        "Sydney"
+      ],
+      "Victoria": [
+        "Melbourne"
+      ]
+    }
+  }
 }

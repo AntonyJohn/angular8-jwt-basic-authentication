@@ -1,10 +1,11 @@
 import { Component, ViewChild, OnInit  } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatDialog, MatSidenavModule } from '@angular/material';
 
 import { AuthenticationService, EmployeeService } from '@app/_services';
 import { Employee } from '@app/_models';
 
 import { EmployeeDialogComponent } from '@app/employee-dialog/employee-dialog.component';
+import { Router } from '@angular/router';
 
 import { first } from 'rxjs/operators';
 
@@ -20,7 +21,7 @@ export class EmployeeComponent implements OnInit {
 	employees = [];		// employee details array for per page
 	
 	// Pagination properties
-	pageSizeOptions = [4, 8, 50];  	// Define page size options
+	pageSizeOptions = [2, 4, 50];  	// Define page size options
 	pageIndex: number = 0; 			// Actual Page Index for current page
 	pageSize: number = 0; 			// Total number of records per page
 	length: number = 0; 			// Total length of the table
@@ -39,7 +40,8 @@ export class EmployeeComponent implements OnInit {
 	
 	constructor(private authenticationService: AuthenticationService,
 				private employeeService: EmployeeService,
-				public dialog: MatDialog) { }
+				public dialog: MatDialog,
+				private router: Router) { }
   
 	ngOnInit() {	
 		this.loadAllEmployees((data_) => {
@@ -116,12 +118,23 @@ export class EmployeeComponent implements OnInit {
 		  height: '400px',
 		  data: selectedRow
 		});
-		let instance = dialogRef.componentInstance;
+		let instance = dialogRef.componentInstance;  // Get the employee-dialog-component.ts instance to assign the value for 'mode' variable
 		
 		instance.mode = mode;
 		console.log('instance:'+instance.mode)
 		dialogRef.afterClosed().subscribe(result => {
-		  console.log('The dialog was closed');
+			console.log('The dialog was closed');
+			
+			// Add event after close dialog to refresh data
+			if(result.event == 'Add'){
+				this.employeesAll.push(result.data);
+				this.length=this.employeesAll.length;
+				this.paginator.page.next({      
+					pageIndex: (this.pageIndex),
+					pageSize: this.pageSize,
+					length: this.length
+				});
+			}
 		});
 		
 	}

@@ -13,7 +13,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { EmployeeComponent } from './employee/employee.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';;
 
 import { MatToolbarModule,
   MatIconModule,
@@ -26,7 +26,8 @@ import { MatToolbarModule,
   MatPaginatorModule,
   MatFormFieldModule,
    MatInputModule,
-   MatDialogModule} from '@angular/material';
+   MatDialogModule,
+   MatSidenavModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeDialogComponent } from './employee-dialog/employee-dialog.component';
 
@@ -55,7 +56,9 @@ import { EmployeeDialogComponent } from './employee-dialog/employee-dialog.compo
 	MatPaginatorModule,
 	MatFormFieldModule,
     MatInputModule,
-	MatDialogModule
+	MatDialogModule,
+	NgxSpinnerModule,
+	MatSidenavModule
   ],
   providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
