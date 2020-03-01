@@ -10,7 +10,8 @@
 	state:string;
 	country:string;
 	email:string;
-	imageUrl:string;   
+	url:string;   
+	status:string;
 
 	constructor(){
        this.id = "";
@@ -24,6 +25,7 @@
 	   this.state = "";
        this.country = "";
 	   this.email = "";
-       this.imageUrl = "";
+       this.url = "";
+	   this.status = "";
    }
 }

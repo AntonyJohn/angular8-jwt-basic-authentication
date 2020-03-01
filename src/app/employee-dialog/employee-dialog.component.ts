@@ -35,6 +35,7 @@ export class EmployeeDialogComponent implements OnInit {
             lastName: [{ value: '', disabled: this.modeFlag }, [Validators.required]],
 			company: [{ value: '', disabled: this.modeFlag }],
 			jobTitle: [{ value: '', disabled: this.modeFlag }],
+			mobilePhone: [{ value: '', disabled: this.modeFlag }],
 			street: [{ value: '', disabled: this.modeFlag }],
 			city: [{ value: '', disabled: this.modeFlag }],
 			state: [{ value: '', disabled: this.modeFlag }],
@@ -65,7 +66,8 @@ export class EmployeeDialogComponent implements OnInit {
 	if (this.employeeForm.invalid) {
 		return;
 	}
-	this.employeeService.add(employee).pipe().subscribe(employee => {
+	employee.status = "Active";
+	this.employeeService.add(employee).pipe().subscribe(employee => {			
 			this.dialogRef.close({event:'Add',data:employee});
 		}, err => {
 			console.log('err',err);
