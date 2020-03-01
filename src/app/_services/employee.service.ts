@@ -12,7 +12,7 @@ employee: [];
     constructor(private http: HttpClient) { }
 
     getAll() : Observable<Employee[]> {
-		return this.http.get<Employee[]>(`${environment.apiUrl}/employees`);
+		return this.http.get<Employee[]>(`${environment.apiUrl}/employee/retrieveAllEmployee`);
     }
 	
 	update(employee: Employee) : Observable<Employee> {
