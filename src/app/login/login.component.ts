@@ -48,9 +48,6 @@ export class LoginComponent implements OnInit {
 	console.log("onSubmit")
         this.submitted = true;
 
-        // reset alerts on submit
-        //this.alertService.clear();
-
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -61,12 +58,20 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-				console.log('sucess:'+[this.returnUrl]);
-                    this.router.navigate([this.returnUrl]);
+					if(data.length === 0) {
+						this.error = 'Invalid Credentials';						
+						this.loading = false;
+						this.authenticationService.currentUserValue.authdata = "";
+						this.router.navigate(['/login']);						
+					} else {
+						console.log('sucess:'+data.length);
+						this.router.navigate([this.returnUrl]);
+					}
                 },
                 error => {
                     this.error = error;
-                    this.loading = false;
+					this.loading = false;
+					this.router.navigate(['/login']);
                 });
     }
 
