@@ -12,24 +12,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { NgxSpinnerModule } from 'ngx-spinner';;
+import { EmployeeComponent } from './modules/employee/employee.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
-import { MatToolbarModule,
-  MatIconModule,
-  MatCardModule,
-  MatButtonModule,
-  MatProgressSpinnerModule,
-  MatDividerModule,
-  MatListModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatFormFieldModule,
-   MatInputModule,
-   MatDialogModule,
-   MatSidenavModule} from '@angular/material';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EmployeeDialogComponent } from './employee-dialog/employee-dialog.component';
+import { EmployeeDialogComponent } from './modules/employee/employee-dialog/employee-dialog.component';
+import { AngularMaterialsModule } from './modules/angular-materials/angular-materials.module';
 
 @NgModule({
   declarations: [
@@ -42,31 +31,19 @@ import { EmployeeDialogComponent } from './employee-dialog/employee-dialog.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-	HttpClientModule,
-	ReactiveFormsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
+	  HttpClientModule,
+	  ReactiveFormsModule,    
     BrowserAnimationsModule,
-	MatDividerModule,
-	MatListModule,
-	MatTableModule,
-	MatPaginatorModule,
-	MatFormFieldModule,
-    MatInputModule,
-	MatDialogModule,
-	NgxSpinnerModule,
-	MatSidenavModule
+    NgxSpinnerModule,
+    AngularMaterialsModule
   ],
   providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // provider used to create fake backend
-        //fakeBackendProvider
+        fakeBackendProvider
 	],
 	 entryComponents: [
     EmployeeDialogComponent // THE MAGIC HAPPENDS HERE

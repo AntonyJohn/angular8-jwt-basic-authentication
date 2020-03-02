@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '@environments/environment';
-import { Employee } from '@app/_models';
+import { Employee } from '@app/modules/employee/models';
 
 import { Observable } from 'rxjs';
 

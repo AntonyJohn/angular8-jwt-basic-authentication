@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
-import { EmployeeService } from '@app/_services';
-import { Employee } from '@app/_models';
+import { EmployeeService } from '@app/modules/employee/services';
+import { Employee } from '@app/modules/employee/models';
 
 import { first } from 'rxjs/operators';
 

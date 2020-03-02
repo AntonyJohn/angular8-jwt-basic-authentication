@@ -1,8 +1,8 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '@environments/environment';
-import { Employee } from '@app/_models';
+import { Employee } from '@app/modules/employee/models';
 
 import { Observable } from 'rxjs';
 
@@ -12,18 +12,18 @@ employee: [];
     constructor(private http: HttpClient) { }
 
     getAll() : Observable<Employee[]> {
-		return this.http.get<Employee[]>(`${environment.apiUrl}/employee-management/employees`);
+		return this.http.get<Employee[]>(`${environment.apiUrl}/employees`);
     }
 	
 	add(employee: Employee) : Observable<Employee> {
-		return this.http.post<Employee>(`${environment.apiUrl}/employee-management/employee`,employee);
+		return this.http.post<Employee>(`${environment.apiUrl}/employees`,employee);
     }
 	
 	update(employee: Employee) : Observable<Employee> {
-		return this.http.put<Employee>(`${environment.apiUrl}/employee-management/employee`,employee);
+		return this.http.put<Employee>(`${environment.apiUrl}/employees/`+employee.id,employee);
     }
 	
 	delete(empId: string) : Observable<Employee> {
-		return this.http.delete<Employee>(`${environment.apiUrl}/employee-management/employee/`+empId);
+		return this.http.delete<Employee>(`${environment.apiUrl}/employees/`+empId);
     }
 }

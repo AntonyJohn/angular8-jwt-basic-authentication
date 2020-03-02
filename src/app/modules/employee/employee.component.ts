@@ -1,10 +1,11 @@
 import { Component, ViewChild, OnInit  } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatSidenavModule } from '@angular/material';
 
-import { AuthenticationService, EmployeeService } from '@app/_services';
-import { Employee } from '@app/_models';
+import { AuthenticationService } from '@app/_services';
+import { EmployeeService } from '@app/modules/employee/services';
+import { Employee } from '@app/modules/employee/models';
 
-import { EmployeeDialogComponent } from '@app/employee-dialog/employee-dialog.component';
+import { EmployeeDialogComponent } from '@app/modules/employee/employee-dialog/employee-dialog.component';
 import { Router } from '@angular/router';
 
 import { first } from 'rxjs/operators';

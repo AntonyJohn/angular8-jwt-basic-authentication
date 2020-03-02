@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { first } from 'rxjs/operators';
 
-import { Employee } from '@app/_models';
-import { EmployeeService, AuthenticationService } from '@app/_services';
+import { Employee } from '@app/modules/employee/models';
+import { AuthenticationService } from '@app/_services';
+import { EmployeeService } from '@app/modules/employee/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
