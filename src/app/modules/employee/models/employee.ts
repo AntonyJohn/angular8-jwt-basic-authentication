@@ -4,6 +4,7 @@
 	lastName:string;
 	company:string;
 	jobTitle:string;
+	dob:string;
 	mobilePhone:string;
 	street:string;
 	city:string;
@@ -19,6 +20,7 @@
 	   this.lastName = "";
        this.company = "";
 	   this.jobTitle = "";
+	   this.dob = "";
        this.mobilePhone = "";
 	   this.street = "";
        this.city = "";

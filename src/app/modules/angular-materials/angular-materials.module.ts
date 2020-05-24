@@ -12,7 +12,8 @@ import { MatToolbarModule,
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
-  MatSidenavModule} from '@angular/material';
+  MatDatepickerModule,
+  MatNativeDateModule } from '@angular/material';
 
   const moduleData = [
       CommonModule,
@@ -28,7 +29,8 @@ import { MatToolbarModule,
       MatFormFieldModule,
       MatInputModule,
       MatDialogModule,	
-      MatSidenavModule
+      MatDatepickerModule,
+      MatNativeDateModule
    ]
 @NgModule({
   declarations: [],

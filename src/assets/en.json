@@ -1,0 +1,7 @@
+{
+    "menu": {
+        "staticcontent.home": "Home",
+        "staticcontent.employee": "Employee",
+        "staticcontent.logout": "Logout"
+    }
+}

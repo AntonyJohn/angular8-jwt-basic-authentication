@@ -10,15 +10,16 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { JwtInterceptor, BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { EmployeeComponent } from './modules/employee/employee.component';
-import { NgxSpinnerModule } from 'ngx-spinner';
-
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EmployeeDialogComponent } from './modules/employee/employee-dialog/employee-dialog.component';
 import { AngularMaterialsModule } from './modules/angular-materials/angular-materials.module';
+import { EmployeeModule } from './modules/employee/employee.module';
+import { EmployeeComponent } from './modules/employee/employee.component';
+import { EmployeeDialogComponent } from './modules/employee/employee-dialog/employee-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -35,15 +36,16 @@ import { AngularMaterialsModule } from './modules/angular-materials/angular-mate
 	  ReactiveFormsModule,    
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    AngularMaterialsModule
+    AngularMaterialsModule,
+    EmployeeModule
   ],
   providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
 
         // provider used to create fake backend
-        fakeBackendProvider
+        //fakeBackendProvider
 	],
 	 entryComponents: [
     EmployeeDialogComponent // THE MAGIC HAPPENDS HERE

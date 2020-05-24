@@ -34,6 +34,15 @@
 		<input matInput formControlName="jobTitle" [(ngModel)]="data.jobTitle">
 	</mat-form-field> 
 	<mat-form-field>
+		<!--<input matInput #datemask [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Choose a date" formControlName="dob" 
+		[(ngModel)]="data.dob" (dateChange)="onChange($event)">-->
+		<input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Choose a date" formControlName="dob" 
+		[(ngModel)]="data.dob">
+		<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		<mat-datepicker #picker></mat-datepicker>
+		<!--<mat-error *ngIf=”dateCtrl.errors?.required && deptCtrl.touched”>Choose a Date</mat-error>-->
+	  </mat-form-field>
+	<mat-form-field>
 		<mat-label>Mobile</mat-label>
 		<input matInput formControlName="mobilePhone" [(ngModel)]="data.mobilePhone">
 	</mat-form-field> 

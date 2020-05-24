@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit  } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatSidenavModule } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
 
 import { AuthenticationService } from '@app/_services';
 import { EmployeeService } from '@app/modules/employee/services';
