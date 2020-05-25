@@ -115,8 +115,8 @@ export class EmployeeComponent implements OnInit {
 			selectedRow = new Employee();
 		}
 		let dialogRef = this.dialog.open(EmployeeDialogComponent, {
-		  width: '600px', 
-		  height: '400px',
+		  width: '720px', 
+		  height: '550px',
 		  data: selectedRow
 		});
 		let instance = dialogRef.componentInstance;  // Get the employee-dialog-component.ts instance to assign the value for 'mode' variable

@@ -89,8 +89,8 @@ My Angular Employee App
 	<ng-container matColumnDef="edit">
       <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
       <mat-cell *matCellDef="let element; let i = index;let row;">
-	  <a mat-button (click)="openPopup(row,'update')" class="mat-row-link" mat-flat-button color="warn"> Edit </a> / 
-	  <a mat-button (click)="delete(row)" mat-flat-button color="warn"> Delete </a>
+	  <a mat-button (click)="openPopup(row,'update')" class="mat-row-link" mat-flat-button color="primary"> Edit </a> &nbsp;
+	  <a mat-button (click)="delete(row)" mat-flat-button color="primary"> Delete </a>
 	  </mat-cell>
     </ng-container> 
 	

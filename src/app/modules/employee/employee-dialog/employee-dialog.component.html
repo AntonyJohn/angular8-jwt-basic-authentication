@@ -5,8 +5,10 @@
 		<mat-label>Id</mat-label>
 		<input matInput formControlName="id" [(ngModel)]="data.id">
 	</mat-form-field>
-	<mat-form-field>
-		<mat-label>First Name</mat-label>
+	<mat-form-field appearance="outline" class="width30" autocomplete="off">
+		<mat-label>First Name
+			<span class="mandatoryField">*</span>
+		</mat-label>
 		<input matInput formControlName="firstName" [(ngModel)]="data.firstName">
 		<mat-error *ngIf="employeeForm.get('firstName').hasError('required')">
 		  First Name is Required!
@@ -18,64 +20,95 @@
 		  First Name can be atmax n characters long!
 		</mat-error>
 	</mat-form-field>
-	<mat-form-field>
-		<mat-label>Last Name</mat-label>
+	<mat-form-field appearance="outline" class="width30" autocomplete="off">
+		<mat-label>Last Name
+			<span class="mandatoryField">*</span>
+		</mat-label>
 		<input matInput formControlName="lastName" [(ngModel)]="data.lastName">
 		<mat-error *ngIf="employeeForm.get('lastName').hasError('required')">
 		  Last Name is Required!
 		</mat-error>		
 	</mat-form-field> 
-	<mat-form-field>
-		<mat-label>Company</mat-label>
-		<input matInput formControlName="company" [(ngModel)]="data.company">
-	</mat-form-field>
-	<mat-form-field>
-		<mat-label>Job Title</mat-label>
-		<input matInput formControlName="jobTitle" [(ngModel)]="data.jobTitle">
-	</mat-form-field> 
-	<mat-form-field>
+	<mat-form-field appearance="outline"  class="width30" autocomplete="off">
+		<mat-label>Date Of Birth
+			<span class="mandatoryField">*</span>
+		  </mat-label>
 		<!--<input matInput #datemask [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Choose a date" formControlName="dob" 
 		[(ngModel)]="data.dob" (dateChange)="onChange($event)">-->
-		<input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Choose a date" formControlName="dob" 
-		[(ngModel)]="data.dob">
+		<input matInput #datemask [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Date Of Birth" formControlName="dob" 
+		[(ngModel)]="data.dob" (keypress)="onChange($event)">
 		<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 		<mat-datepicker #picker></mat-datepicker>
-		<!--<mat-error *ngIf=”dateCtrl.errors?.required && deptCtrl.touched”>Choose a Date</mat-error>-->
-	  </mat-form-field>
-	<mat-form-field>
-		<mat-label>Mobile</mat-label>
+		<mat-error *ngIf="employeeForm.get('dob').hasError('required')">
+			DOB is Required!
+		</mat-error>
+		<mat-error *ngIf="employeeForm.get('dob').hasError('matDatepickerMax')">
+			Date should be lesser 
+		</mat-error>
+		<mat-error *ngIf="employeeForm.get('dob').hasError('matDatepickerMin')">
+			Date should be greater
+		</mat-error>
+	</mat-form-field>
+	<mat-form-field appearance="outline" class="width30 phone-number" autocomplete="off">
+		<span class="number">+ 91</span>
+		<mat-label>Mobile
+			<span class="mandatoryField">*</span>
+		</mat-label>
 		<input matInput formControlName="mobilePhone" [(ngModel)]="data.mobilePhone">
-	</mat-form-field> 
-	<mat-form-field>
-		<mat-label>Street</mat-label>
-		<input matInput formControlName="street" [(ngModel)]="data.street">
+		<mat-error *ngIf="employeeForm.get('mobilePhone').hasError('required')">
+			Mobile No is Required!
+		</mat-error>
+		<mat-error *ngIf="employeeForm.get('mobilePhone').hasError('minlength')">
+			Mobile No minimum 10 digit
+		</mat-error>
+        <mat-error *ngIf="employeeForm.get('mobilePhone').hasError('maxlength')">
+			Mobile No maximum 10 digit
+		</mat-error>
+		<mat-error *ngIf="employeeForm.get('mobilePhone').hasError('pattern')">
+			Mobile No Invalid
+		</mat-error>
 	</mat-form-field>
-	<mat-form-field>
-		<mat-label>City</mat-label>
-		<input matInput formControlName="city" [(ngModel)]="data.city">
-	</mat-form-field> 
-	<mat-form-field>
-		<mat-label>State</mat-label>
-		<input matInput formControlName="state" [(ngModel)]="data.state">
-	</mat-form-field>
-	<mat-form-field>
-		<mat-label>Country</mat-label>
-		<input matInput formControlName="country" [(ngModel)]="data.country">
-	</mat-form-field> 
-	<mat-form-field>
-		<mat-label>E-mail</mat-label>
+	<mat-form-field appearance="outline"  class="width30" autocomplete="off">
+		<mat-label>E-mail
+			<span class="mandatoryField">*</span>
+		</mat-label>
 		<input matInput formControlName="email" [(ngModel)]="data.email">
 		<mat-error *ngIf="employeeForm.get('email').hasError('required')">
 		  E-mail is Required!
 		</mat-error>
 		<mat-error *ngIf="employeeForm.get('email').hasError('pattern')">
-		  Email must follow this pattern!
+		  Invalid e-mail id!
 		</mat-error>
 	</mat-form-field> 
+	<mat-form-field appearance="outline"  class="width30">
+		<mat-label>Company</mat-label>
+		<input matInput formControlName="company" [(ngModel)]="data.company">
+	</mat-form-field>
+	<mat-form-field appearance="outline" class="width30">
+		<mat-label>Job Title</mat-label>
+		<input matInput formControlName="jobTitle" [(ngModel)]="data.jobTitle">
+	</mat-form-field> 		 
+	<mat-form-field appearance="outline"  class="width30">
+		<mat-label>Country</mat-label>
+		<input matInput formControlName="country" [(ngModel)]="data.country">
+	</mat-form-field> 
+	<mat-form-field appearance="outline" class="width30">
+		<mat-label>State</mat-label>
+		<input matInput formControlName="state" [(ngModel)]="data.state">
+	</mat-form-field>
+	<mat-form-field appearance="outline" class="width30">
+		<mat-label>City</mat-label>
+		<input matInput formControlName="city" [(ngModel)]="data.city">
+	</mat-form-field> 
+	<mat-form-field appearance="outline" class="width30">
+		<mat-label>Street</mat-label>
+		<input matInput formControlName="street" [(ngModel)]="data.street">
+	</mat-form-field>
 </div>
-<div mat-dialog-actions>  
-  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Close</button>
-  <button *ngIf="this.mode == 'update';" mat-button (click)="update(this.data)" mat-flat-button color="warn">Update</button>
-  <button *ngIf="this.mode == 'add';" mat-button (click)="add(this.data)" mat-flat-button color="warn">Save</button>
+
+<div class="dialog-btn-actions">  
+  <button mat-button (click)="closeDialog()" color="primary">Close</button> &nbsp;
+  <button *ngIf="this.mode == 'update';" mat-button (click)="update(this.data)" color="primary">Update</button>
+  <button *ngIf="this.mode == 'add';" mat-button (click)="add(this.data)" color="primary" >Save</button>
 </div>
 </form>

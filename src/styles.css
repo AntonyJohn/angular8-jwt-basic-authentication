@@ -2,3 +2,49 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.width30 {
+    width: 33.33%;
+    padding: 0 15px;
+  }
+.phone-number .number {
+    float: left;
+    position: relative;
+    top: -3px;
+    padding-right: 8px;
+  }
+  
+  .phone-number .mat-input-element {
+    width: 65%;
+    position: relative;
+    top: -3px;
+  }
+
+  .phone-number mat-label {
+    background-color: #ffffff;
+  }
+
+  .mat-input-element {
+    font-size: 16px !important;
+  }
+  
+  .dialog-btn-actions {
+    text-align: end;
+    padding: 15px 0 0;
+  }
+  
+  .dialog-btn-actions .mat-button {
+    padding: 0 30px !important;
+  }
+
+  .mat-button.mat-primary, .mat-raised-button.mat-primary {
+    background-color: #005aab;
+    color: white;
+    font-size: 13px;
+  }
+  .submit-btn-no {
+    border: 1px solid #005aab !important;
+    color: black;
+    margin-right: 15px !important;
+  }
