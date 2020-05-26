@@ -6,9 +6,11 @@ import { EmployeeService } from '@app/modules/employee/services';
 import { Employee } from '@app/modules/employee/models';
 
 import { EmployeeDialogComponent } from '@app/modules/employee/employee-dialog/employee-dialog.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 import { first } from 'rxjs/operators';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-employee',
@@ -39,16 +41,20 @@ export class EmployeeComponent implements OnInit {
 	dataSource = new MatTableDataSource();	
 	displayedColumns: string[] = ['id', 'firstName', 'lastName', 'company', 'edit'];
 	
-	constructor(private authenticationService: AuthenticationService,
+	constructor(public authenticationService: AuthenticationService,
 				private employeeService: EmployeeService,
 				public dialog: MatDialog,
-				private router: Router) { }
+				private router: Router,
+				private spinnerService: NgxSpinnerService) { }
   
 	ngOnInit() {	
+		console.log("oninit")
+		this.spinnerService.show();
 		this.loadAllEmployees((data_) => {
 			if(data_){
 				this.employeesAll = data_;
 				this.pageSize = this.pageSizeOptions[0];
+				console.log('this.pageSize',this.pageSize,'----',this.employeesAll.length)
 				for(let i=0; i<this.employeesAll.length; i++){
 					if(i < this.pageSize) {
 						this.employees[i] = this.employeesAll[i];
@@ -66,9 +72,10 @@ export class EmployeeComponent implements OnInit {
 	}
   
     // To get all the employees details
-	public loadAllEmployees(callback) {
+	public loadAllEmployees(callback) {		
 		this.employeeService.getAll().pipe(first()).subscribe(employees => {
 			if(employees){
+				this.spinnerService.hide();
 				callback(employees);
 			}
 		}, err => {
@@ -125,17 +132,22 @@ export class EmployeeComponent implements OnInit {
 		console.log('instance:'+instance.mode)
 		dialogRef.afterClosed().subscribe(result => {
 			console.log('The dialog was closed');
-			
-			// Add event after close dialog to refresh data
-			if(result.event == 'Add'){
-				this.employeesAll.push(result.data);
-				this.length=this.employeesAll.length;
-				this.paginator.page.next({      
-					pageIndex: (this.pageIndex),
-					pageSize: this.pageSize,
-					length: this.length
-				});
-			}
+			/*this.isLoading=false;
+			this.loadAllEmployees((data_) => {
+				if(data_){
+					this.employeesAll = data_;
+					for(let i=0; i<this.employeesAll.length; i++){
+						if(i < this.pageSize) {
+							this.employees[i] = this.employeesAll[i];
+						}
+					}
+					setTimeout(() => {			  				
+						this.dataSource.data = this.employees;
+						this.length=this.employeesAll.length;				
+						this.isLoading = true;						
+					});
+				}
+			});	*/
 		});
 		
 	}

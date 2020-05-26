@@ -7,7 +7,6 @@ My Angular Employee App
 <button mat-button routerLink="/" (click)= "authenticationService.logout()">Logout</button></mat-toolbar>
 
 <div style="padding: 13px;">
-    <!--<mat-progress-spinner *ngIf="employees.length === 0"></mat-progress-spinner>-->
     <mat-card *ngFor="let employee of employees" style="margin-top:10px;width:50em;">
         <mat-card-header style="background-color:#33ffca">
 			<div mat-card-avatar style="margin: 5px 0px 0px 10px"><img style="height:100%;width: 100%;" src="{{ employee.imageUrl }}" /></div>

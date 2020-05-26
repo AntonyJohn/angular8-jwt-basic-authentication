@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularMaterialsModule } from '../angular-materials/angular-materials.module';
-//import { EmployeeComponent } from './employee.component';
-//import { EmployeeDialogComponent } from './employee-dialog/employee-dialog.component';
+import { EmployeeRoutingModule } from '../employee/employee-routing.module';
+import { ReactiveFormsModule } from '@angular/forms'; 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+import { EmployeeComponent } from './employee.component';
+import { EmployeeDialogComponent } from './employee-dialog/employee-dialog.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [EmployeeComponent,EmployeeDialogComponent],
   imports: [
     CommonModule,
-    AngularMaterialsModule
+    AngularMaterialsModule,
+    EmployeeRoutingModule,    
+    ReactiveFormsModule,
+    NgxSpinnerModule 
   ],
-  entryComponents: []
+  entryComponents: [EmployeeDialogComponent]
 })
 export class EmployeeModule { }

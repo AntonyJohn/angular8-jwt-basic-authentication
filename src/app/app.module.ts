@@ -17,17 +17,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AngularMaterialsModule } from './modules/angular-materials/angular-materials.module';
 import { EmployeeModule } from './modules/employee/employee.module';
-import { EmployeeComponent } from './modules/employee/employee.component';
-import { EmployeeDialogComponent } from './modules/employee/employee-dialog/employee-dialog.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
-    EmployeeComponent,
-    EmployeeDialogComponent
+    HomeComponent    
   ],
   imports: [
     BrowserModule,
@@ -44,12 +39,10 @@ import { EmployeeDialogComponent } from './modules/employee/employee-dialog/empl
 		{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
 
-        // provider used to create fake backend
-        //fakeBackendProvider
+    // provider used to create fake backend
+    //fakeBackendProvider
 	],
-	 entryComponents: [
-    EmployeeDialogComponent // THE MAGIC HAPPENDS HERE
-  ],
+	entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

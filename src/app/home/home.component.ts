@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { Employee } from '@app/modules/employee/models';
 import { AuthenticationService } from '@app/_services';
 import { EmployeeService } from '@app/modules/employee/services';
-//import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +15,12 @@ import { EmployeeService } from '@app/modules/employee/services';
 export class HomeComponent implements OnInit {
 
   	employees = [];
-	constructor(private authenticationService: AuthenticationService,
-	private employeeService: EmployeeService) { }
+	constructor(public authenticationService: AuthenticationService,
+	private employeeService: EmployeeService,
+	private spinnerService: NgxSpinnerService) { }
 
 	ngOnInit() {
-		//this.spinner.show();
+		this.spinnerService.show();
 		this.loadAllEmployees();
 	}
 
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
 			.subscribe(employees => {		
 			setTimeout(() => {  
 				this.employees = employees
-				//this.spinner.hide();
+				this.spinnerService.hide();
 			}, 1000);
 		});						
 	}
