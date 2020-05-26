@@ -1,5 +1,6 @@
 {
     "menu": {
+        "staticcontent.heading": "My Angular Employee App",
         "staticcontent.home": "Home",
         "staticcontent.employee": "Employee",
         "staticcontent.logout": "Logout"

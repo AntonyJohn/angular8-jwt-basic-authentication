@@ -1,11 +1,3 @@
-<mat-toolbar color="primary">  
-<h1>  
-My Angular Employee App  
-</h1>  
-<button mat-button routerLink="/home">Home</button>  
-<button mat-button routerLink="/employee">Employee</button>
-<button mat-button routerLink="/" (click)= "authenticationService.logout()">Logout</button></mat-toolbar>
-
 <div style="padding: 13px;">
     <mat-card *ngFor="let employee of employees" style="margin-top:10px;width:50em;">
         <mat-card-header style="background-color:#33ffca">

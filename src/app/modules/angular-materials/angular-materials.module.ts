@@ -14,6 +14,7 @@ import { MatToolbarModule,
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule } from '@angular/material';
+  import { UiSwitchModule } from 'ngx-toggle-switch';
 
   const moduleData = [
       CommonModule,
@@ -30,7 +31,8 @@ import { MatToolbarModule,
       MatInputModule,
       MatDialogModule,	
       MatDatepickerModule,
-      MatNativeDateModule
+      MatNativeDateModule,
+      UiSwitchModule
    ]
 @NgModule({
   declarations: [],

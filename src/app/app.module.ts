@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,11 +18,19 @@ import { HomeComponent } from './home/home.component';
 import { AngularMaterialsModule } from './modules/angular-materials/angular-materials.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 
+import { TranslateService } from '@app/_services/translate.service';
+import { TranslatePipe } from '@app/pipes/translate.pipe';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent    
+    HomeComponent,
+    TranslatePipe,
+    HeaderComponent,
+    FooterComponent   
   ],
   imports: [
     BrowserModule,
@@ -37,8 +45,14 @@ import { EmployeeModule } from './modules/employee/employee.module';
   providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    TranslateService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: setupTranslateFactory,
+      deps: [TranslateService],
+      multi: true
+    }
     // provider used to create fake backend
     //fakeBackendProvider
 	],
@@ -46,3 +60,9 @@ import { EmployeeModule } from './modules/employee/employee.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function setupTranslateFactory(
+  service: TranslateService): Function {
+  return () => service.use('en');
+
+}

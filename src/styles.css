@@ -48,3 +48,54 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: black;
     margin-right: 15px !important;
   }
+
+  /******* LANGUAGE ********/
+
+.language-select {
+    color: white;
+    /* padding: 0 15px; */
+    font-size: 12px;
+    top: 15px;
+    position: relative;
+  }
+  
+  .language-select .switch-medium.switch-labeled.checked small {
+    left: 55px !important;
+    box-shadow: -5px 0px 5px -4px #000000;
+    border: 1px solid #d4d4d4;
+  }
+  
+  .language-select .switch-medium.switch-labeled small {
+    border: 1px solid #d4d4d4;
+  }
+  
+  .language-select .switch-medium.switch-labeled {
+    width: 83px !important;
+  }
+  
+  .language-select .switch-text {
+    font-size: 10px !important;
+  }
+  
+  .language-select .switch .on {
+    top: 0px !important;
+  }
+  
+  .language-select .switch .off {
+    color: #484848 !important;
+    top: 0px !important;
+    left: 36px;
+  }
+  
+  /* span.switch.switch-medium.switch-labeled {
+  background: #ffffff !important;
+  } */
+  
+  span.switch.switch-medium.switch-labeled.checked {
+    background: #00aeef !important;
+    border: 1px solid #00aeef !important;
+  }
+  
+  .language-select small[_ngcontent-c8] {
+    box-shadow: 3px 0px 5px -1px rgba(57, 83, 173, 0.81);
+  }

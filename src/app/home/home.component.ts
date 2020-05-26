@@ -6,6 +6,8 @@ import { Employee } from '@app/modules/employee/models';
 import { AuthenticationService } from '@app/_services';
 import { EmployeeService } from '@app/modules/employee/services';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { TranslateService } from '@app/_services/translate.service';
+import { GlobalService } from '../global-service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,9 @@ export class HomeComponent implements OnInit {
   	employees = [];
 	constructor(public authenticationService: AuthenticationService,
 	private employeeService: EmployeeService,
-	private spinnerService: NgxSpinnerService) { }
+	private spinnerService: NgxSpinnerService,
+	public translate: TranslateService,
+	public global: GlobalService) { }
 
 	ngOnInit() {
 		this.spinnerService.show();
@@ -35,3 +39,5 @@ export class HomeComponent implements OnInit {
 		});						
 	}
 }
+
+
