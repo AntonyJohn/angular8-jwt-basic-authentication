@@ -6,7 +6,7 @@ import { TranslateService } from './_services/translate.service';
 })
 export class GlobalService { 
 
-    constructor(private translate: TranslateService) {
+    constructor(public translate: TranslateService) {
 
     }
 

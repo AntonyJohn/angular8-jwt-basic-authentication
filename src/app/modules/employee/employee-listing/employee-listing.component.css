@@ -1,0 +1,20 @@
+.search{
+    column-rule: 3px;
+}
+img.user-list.icon-edit {
+    width: 22px;
+    margin: 0px;
+}
+thead{
+    background-color: #005aab;
+    color: white;
+}
+table{
+    font-size: 13px;
+}
+.table td, .table th{
+    font-weight: 500 !important;
+}
+pagination-controls{
+    text-align: right;
+}

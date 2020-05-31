@@ -3,7 +3,7 @@ import { AuthenticationService } from '@app/_services';
 import { EmployeeService } from '@app/modules/employee/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TranslateService } from '@app/_services/translate.service';
-import { GlobalService } from '@app/global-service';
+import { GlobalService } from '@app/global.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

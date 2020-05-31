@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { from } from 'rxjs';
-import { GlobalService } from '../global-service';
+import { GlobalService } from '../global.service';
 
 
 @Pipe({

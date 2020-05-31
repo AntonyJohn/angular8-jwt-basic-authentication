@@ -7,7 +7,7 @@ import { AuthenticationService } from '@app/_services';
 import { EmployeeService } from '@app/modules/employee/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TranslateService } from '@app/_services/translate.service';
-import { GlobalService } from '../global-service';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-home',

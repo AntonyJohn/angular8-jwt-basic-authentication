@@ -31,6 +31,7 @@
     "mat-sidenav-menu": "^0.10.1",
     "moment": "^2.24.0",
     "ng-pick-datetime-moment": "^1.0.8",
+    "ng2-completer": "~3.0.3",
     "ngx-spinner": "^8.1.0",
     "ngx-toggle-switch": "^2.0.5",
     "rxjs": "~6.4.0",
@@ -56,6 +57,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "ack-angular-fx": "^3.0.4"
   }
 }
