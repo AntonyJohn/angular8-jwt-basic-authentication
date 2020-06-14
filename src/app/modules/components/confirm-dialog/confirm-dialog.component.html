@@ -1,0 +1,17 @@
+<div>
+    <mat-toolbar role="heading" class="dialog-header">
+      {{title}}
+      <button mat-icon-button class="dialog-close-btn">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="delete-dialog-body">
+      <p>{{message}}</p>
+      <!-- <span class ="delete">{{data.message}}</span> -->
+      <div class="dialog-btn-actions">
+        <button mat-button (click)="onDismiss()" class="submit-btn-no">No</button>
+        <button mat-raised-button color="primary" (click)="onConfirm()" class="submit-btn">Yes</button>
+      
+      </div>
+    </div>
+  </div>

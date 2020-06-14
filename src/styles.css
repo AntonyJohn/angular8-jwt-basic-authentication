@@ -218,3 +218,43 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 50%;
     float: left;
   }
+
+  /* Dialog Component */
+  .dialog-header {
+    /* position: absolute;
+       left: 0;
+       top: 0; */
+    background-color: #005aab;
+    color: white;
+    height: 50px !important;
+    font-size: 15px;
+  }
+
+  .delete-dialog-body {
+    text-align: center;
+    padding: 25px;
+  }
+
+  .dialog-close-btn {
+    position: absolute !important;
+    right: 0;
+    background-color: #ff7800;
+    border-radius: 0 !important;
+    height: 50px !important;
+    width: 50px !important;
+  }
+
+  .dialog-body {
+    margin-top: 15px;
+    padding: 16px;
+    display: block;
+    max-height: 75vh;
+    overflow: auto;
+  }
+
+  .mat-dialog-container {
+    position: relative;
+    padding: 0 !important;
+  }
+  
+  

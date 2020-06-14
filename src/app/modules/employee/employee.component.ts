@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
 
+import { ConfirmDialogModel, ConfirmDialogComponent } from '../../modules/components/confirm-dialog/confirm-dialog.component';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -153,9 +154,19 @@ export class EmployeeComponent implements OnInit {
 	}
 
 	delete(employee) {
-		let j = 0;
-		if(confirm("Are you sure to delete "+employee.firstName)) {
-		this.employeeService.delete(employee.id).pipe().subscribe(res => {
+		let message = "Are you sure to delete "+employee.firstName
+		const dialogData = new ConfirmDialogModel("Confirm Action", message);    
+		const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+		  width: '40%', 
+		  disableClose: true,
+		  data: dialogData
+		});
+		
+		dialogRef.afterClosed().subscribe(result => {
+		  console.log(result)
+		  if (result) {
+			let j = 0;		
+			this.employeeService.delete(employee.id).pipe().subscribe(res => {
 			
 			// To flush the employees array while delete
 			this.employees.length = 0;
@@ -199,9 +210,8 @@ export class EmployeeComponent implements OnInit {
 			//this.error = err;
 		});
 		console.log("Implement delete functionality here");
-	  }
-		
-		
+		  }
+		});
 		
   }
 }

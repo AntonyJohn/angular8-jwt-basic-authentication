@@ -22,6 +22,7 @@ import { TranslateService } from '@app/_services/translate.service';
 import { TranslatePipe } from '@app/pipes/translate.pipe';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ConfirmDialogComponent } from './modules/components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FooterComponent } from './components/footer/footer.component';
     HomeComponent,
     TranslatePipe,
     HeaderComponent,
-    FooterComponent   
+    FooterComponent,    
+    ConfirmDialogComponent   
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,7 @@ import { FooterComponent } from './components/footer/footer.component';
     // provider used to create fake backend
     //fakeBackendProvider
 	],
-	entryComponents: [],
+	entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
