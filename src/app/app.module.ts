@@ -24,6 +24,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ConfirmDialogComponent } from './modules/components/confirm-dialog/confirm-dialog.component';
 
+import { ToastrModule } from 'ng6-toastr-notifications';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { ConfirmDialogComponent } from './modules/components/confirm-dialog/conf
     BrowserAnimationsModule,
     NgxSpinnerModule,
     AngularMaterialsModule,
-    EmployeeModule
+    EmployeeModule,
+    ToastrModule.forRoot()
   ],
   providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

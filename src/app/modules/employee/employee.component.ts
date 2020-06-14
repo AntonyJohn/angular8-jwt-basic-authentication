@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { first } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 import { ConfirmDialogModel, ConfirmDialogComponent } from '../../modules/components/confirm-dialog/confirm-dialog.component';
 @Component({
@@ -46,7 +47,8 @@ export class EmployeeComponent implements OnInit {
 				private employeeService: EmployeeService,
 				public dialog: MatDialog,
 				private router: Router,
-				private spinnerService: NgxSpinnerService) { }
+				private spinnerService: NgxSpinnerService,
+				private toastr: ToastrManager) { }
   
 	ngOnInit() {	
 		console.log("oninit")
@@ -123,7 +125,7 @@ export class EmployeeComponent implements OnInit {
 			selectedRow = new Employee();
 		}
 		let dialogRef = this.dialog.open(EmployeeDialogComponent, {
-		  width: '720px', 
+		  width: '850px', 
 		  height: '550px',
 		  data: selectedRow
 		});
@@ -133,6 +135,7 @@ export class EmployeeComponent implements OnInit {
 		console.log('instance:'+instance.mode)
 		dialogRef.afterClosed().subscribe(result => {
 			console.log('The dialog was closed');
+			this.toastr.successToastr("", instance.mode == "add" ? "Employee added sucessfully" : "Employee updated sucessfully", { position: "bottom-full-width" });
 			/*this.isLoading=false;
 			this.loadAllEmployees((data_) => {
 				if(data_){
@@ -170,7 +173,8 @@ export class EmployeeComponent implements OnInit {
 			
 			// To flush the employees array while delete
 			this.employees.length = 0;
-		
+			this.toastr.successToastr("", "Employee deleted sucessfully", { position: "bottom-full-width" });
+
 			// Remove the record from employeesAll[]
 			for(let i=0; i<this.employeesAll.length; i++){			
 				if (this.employeesAll[i].id === employee.id) {
