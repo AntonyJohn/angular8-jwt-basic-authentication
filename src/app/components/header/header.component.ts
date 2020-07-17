@@ -4,12 +4,16 @@ import { EmployeeService } from '@app/modules/employee/services';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TranslateService } from '@app/_services/translate.service';
 import { GlobalService } from '@app/global.service';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+	isLoggedIn$: any;
 
   constructor(public authenticationService: AuthenticationService,
     private employeeService: EmployeeService,
@@ -18,6 +22,10 @@ export class HeaderComponent implements OnInit {
     public global: GlobalService) { }
 
   ngOnInit() {
+	  console.log("header oninit")
+	//this.isLoggedIn$ = this.authenticationService.isLoggedIn;
+	this.authenticationService.logg.subscribe(data => this.isLoggedIn$ = data);
+	console.log("this.isLoggedIn$::",this.isLoggedIn$)
     this.onLangChange(0);
   }
 

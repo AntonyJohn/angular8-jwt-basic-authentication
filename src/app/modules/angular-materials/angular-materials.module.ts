@@ -13,7 +13,9 @@ import { MatToolbarModule,
   MatInputModule,
   MatDialogModule,
   MatDatepickerModule,
-  MatNativeDateModule } from '@angular/material';
+  MatNativeDateModule,
+  MatExpansionModule,
+  MatTabsModule  } from '@angular/material';
 import { UiSwitchModule } from 'ngx-toggle-switch';
 
   const moduleData = [
@@ -32,6 +34,8 @@ import { UiSwitchModule } from 'ngx-toggle-switch';
       MatDialogModule,	
       MatDatepickerModule,
       MatNativeDateModule,
+      MatExpansionModule,
+      MatTabsModule,
       UiSwitchModule      
    ]
 @NgModule({

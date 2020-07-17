@@ -8,9 +8,10 @@ import { AuthGuard } from './_helpers';
 const routes: Routes = [
 	{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-	{ path: 'home', component: HomeComponent },	
+	{ path: 'home', component: HomeComponent,  canActivate: [AuthGuard] },	
   {
     path: 'employee',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule)
   },
   // otherwise redirect to home

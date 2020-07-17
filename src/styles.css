@@ -65,7 +65,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 
 
 .width30 {
-    width: 33.33%;
+    width: 24.33%;
     padding: 0 15px;
   }
 .phone-number .number {
@@ -505,4 +505,8 @@ input:read-only {
   font-size: 30px;
   line-height: 22px;
   margin-left: 6px;
+}
+
+.mat-tab-body-content {
+  padding: 15px !important;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Pipe, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl, FormArray } from '@angular/forms';
 
 import { EmployeeService } from '@app/modules/employee/services';
 import { Employee } from '@app/modules/employee/models';
@@ -49,6 +49,10 @@ export class EmployeeDialogComponent implements OnInit {
 	minDate: Date;
 	maxDate: Date;
 	@ViewChild('datemask', {static: false}) input;
+	address = new FormArray([]);
+	employeeInfo: any = {}
+	tabs = ['Residant Address', 'Officce Address'];
+	step = 0;
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -58,7 +62,7 @@ export class EmployeeDialogComponent implements OnInit {
 			let now: Date = new Date();
 			this.minDate = new Date(now.getFullYear() - 69, now.getMonth(), now.getDate());
 			this.maxDate = new Date(now.getFullYear() - 19, now.getMonth(), now.getDate());
-			
+			this.employeeInfo = this.data;			
    }
 
   ngOnInit() {  
@@ -75,15 +79,37 @@ export class EmployeeDialogComponent implements OnInit {
 			email: [{ value: '', disabled: this.modeFlag }, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
 			company: [{ value: '', disabled: this.modeFlag }],
 			jobTitle: [{ value: '', disabled: this.modeFlag }],
-			country: [{ value: '', disabled: this.modeFlag }],
-			state: [{ value: '', disabled: this.modeFlag }],
-			city: [{ value: '', disabled: this.modeFlag }],
-			street: [{ value: '', disabled: this.modeFlag }]
+			address: new FormArray([
+				new FormGroup({
+					country: new FormControl(''),
+					state: new FormControl(''),
+					city: new FormControl(''),
+					street: new FormControl('')
+				}),
+				new FormGroup({
+					country: new FormControl(''),
+					state: new FormControl(''),
+					city: new FormControl(''),
+					street: new FormControl('')
+				})
+			])			
 		});
-		//console.log("TTTTT::",this.data.dob,moment(this.data.dob,"YYYY-MM-DD h:m:s").format("DD-MM-YYYY"))
-		//this.employeeForm.get('dob').setValue(moment(this.data.dob,"YYYY-MM-DD h:m:s").format("DD-MM-YYYY"));
-		//this.data.dob = moment(this.data.dob,"YYYY-MM-DD h:m:s").format("DD-MM-YYYY");
-		//this.input.nativeElement.value = moment(this.data.dob,"YYYY-MM-DD h:m:s").format("DD-MM-YYYY");
+
+		this.address = this.employeeForm.get('address') as FormArray;
+		if(this.employeeInfo != null) {
+			this.employeeInfo.address.forEach((field, index) => {
+				/*let faControl = (<FormArray>this.employeeForm.controls['address']).at(index);
+				faControl.get('country').setValue(this.employeeInfo.address[+index].country);
+				faControl.get('city').setValue(this.employeeInfo.address[index].state);
+				faControl.get('state').setValue(this.employeeInfo.address[index].city);
+				faControl.get('street').setValue(this.employeeInfo.address[index].street);
+				*/				
+				this.address.controls[index].get("country").setValue(this.employeeInfo.address[index].country);
+				this.address.controls[index].get("state").setValue(this.employeeInfo.address[index].state);
+				this.address.controls[index].get("city").setValue(this.employeeInfo.address[index].city);
+				this.address.controls[index].get("street").setValue(this.employeeInfo.address[index].street);				
+			  })
+		}		
   }
 
   closeDialog(){	
@@ -95,6 +121,24 @@ export class EmployeeDialogComponent implements OnInit {
 	if (this.employeeForm.invalid) {
 		return;
 	}
+	
+	this.address.controls.forEach((field, index) => {
+		if(employee.address[index] != undefined) {
+			employee.address[index].country = field.get('country').value;
+			employee.address[index].state = field.get('state').value;
+			employee.address[index].city = field.get('city').value;
+			employee.address[index].street = field.get('street').value;
+		} else {
+			if(field.get('country').value != '') {
+				employee.address.push({id:"",country: field.get('country').value,
+					state: field.get('state').value,
+					city: field.get('city').value,
+					street: field.get('street').value
+				});
+			}
+		}
+	});
+	
 	this.employeeService.update(employee).pipe().subscribe(employee => {	
 			this.dialogRef.close({event:'Update',data:employee});		
 		}, err => {
@@ -178,5 +222,15 @@ export class EmployeeDialogComponent implements OnInit {
     }
   }
 
-  
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
 }

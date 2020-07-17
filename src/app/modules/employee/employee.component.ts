@@ -126,7 +126,7 @@ export class EmployeeComponent implements OnInit {
 		}
 		let dialogRef = this.dialog.open(EmployeeDialogComponent, {
 		  width: '850px', 
-		  height: '550px',
+		  height: '850px',
 		  data: selectedRow
 		});
 		let instance = dialogRef.componentInstance;  // Get the employee-dialog-component.ts instance to assign the value for 'mode' variable
@@ -136,7 +136,7 @@ export class EmployeeComponent implements OnInit {
 		dialogRef.afterClosed().subscribe(result => {
 			console.log('The dialog was closed');
 			this.toastr.successToastr("", instance.mode == "add" ? "Employee added sucessfully" : "Employee updated sucessfully", { position: "bottom-full-width" });
-			/*this.isLoading=false;
+			this.isLoading=false;
 			this.loadAllEmployees((data_) => {
 				if(data_){
 					this.employeesAll = data_;
@@ -151,7 +151,7 @@ export class EmployeeComponent implements OnInit {
 						this.isLoading = true;						
 					});
 				}
-			});	*/
+			});	
 		});
 		
 	}
