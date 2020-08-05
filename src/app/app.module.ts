@@ -49,7 +49,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
   ],
   providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-		{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+		/*{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },*/
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     TranslateService,
     {

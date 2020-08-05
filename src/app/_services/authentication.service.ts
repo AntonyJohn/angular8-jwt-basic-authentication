@@ -31,18 +31,20 @@ export class AuthenticationService {
     }
 
     loginJWT(username: string, password: string) {
-		console.log('login');
-        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
+		console.log('loginJWT');
+        return this.http.post<any>(`${environment.apiUrl}/login/authenticatejwt`, { username, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
+                this.loggedIn.next(this.currentUserValue == undefined ? false : true);
                 return user;
             }));
     }
 
-	login(username: string, password: string) {		
-        return this.http.post<any>(`${environment.apiUrl}/login/authenticate`, { username , password })
+	loginBasic(username: string, password: string) {
+        console.log('loginBasicAuth');		
+        return this.http.post<any>(`${environment.apiUrl}/login/authenticatebasic`, { username , password })
             .pipe(map(user => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
                 user.authdata = window.btoa(username + ':' + password);				

@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        /*this.authenticationService.loginBasic(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
@@ -72,7 +72,29 @@ export class LoginComponent implements OnInit {
                     this.error = error;
 					this.loading = false;
 					this.router.navigate(['/login']);
-                });
+                });*/
+
+                this.authenticationService.loginJWT(this.f.username.value, this.f.password.value)
+                    .pipe(first())
+                    .subscribe(
+                        data => {
+                            if(data.length === 0) {
+                                console.log("Invalid Credentials")
+                                this.error = 'Invalid Credentials';						
+                                this.loading = false;
+                                this.authenticationService.currentUserValue.token= "";
+                                this.authenticationService.currentUserValue.authdata = "";
+                                this.router.navigate(['/login']);						
+                            } else {
+                                console.log('sucess:'+data.length);
+                                this.router.navigate([this.returnUrl]);
+                            }
+                        },
+                        error => {
+                            this.error = error;
+                            this.loading = false;
+                            this.router.navigate(['/login']);
+                    });
     }
 
 }
