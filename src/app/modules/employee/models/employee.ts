@@ -1,18 +1,17 @@
-﻿export class Employee {
+﻿import { Address } from './Address';
+
+export class Employee {
 	id:string;
 	firstName:string;
 	lastName:string;
 	company:string;
 	jobTitle:string;
 	dob:string;
-	mobilePhone:string;
-	street:string;
-	city:string;
-	state:string;
-	country:string;
+	mobilePhone:string;	
 	email:string;
 	url:string;   
 	status:string;
+	address: Address[];
 
 	constructor(){
        this.id = "";
@@ -21,13 +20,10 @@
        this.company = "";
 	   this.jobTitle = "";
 	   this.dob = "";
-       this.mobilePhone = "";
-	   this.street = "";
-       this.city = "";
-	   this.state = "";
-       this.country = "";
+       this.mobilePhone = "";	   
 	   this.email = "";
        this.url = "";
 	   this.status = "";
+	   this.address=[];
    }
 }

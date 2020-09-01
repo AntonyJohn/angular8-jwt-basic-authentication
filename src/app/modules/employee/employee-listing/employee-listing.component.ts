@@ -129,10 +129,10 @@ export class EmployeeListingComponent implements OnInit {
 		this.spinnerService.show();
 		this.loadAllEmployees((data_) => {
 			if(data_){
-				this.employeesAll = data_;
+				this.employeesAll = data_.responseValue;
 				
 				setTimeout(() => {	          				
-					this.source = data_;
+					this.source = data_.responseValue;
 				});
 			}
 		});	  

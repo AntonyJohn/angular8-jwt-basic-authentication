@@ -29,11 +29,13 @@ export class HomeComponent implements OnInit {
 	}
 
 	private loadAllEmployees() {
+		console.log("loadAllEmployees")
 		this.employeeService.getAll()
 			.pipe(first())
 			.subscribe(employees => {		
 			setTimeout(() => {  
-				this.employees = employees
+				this.employees = employees.responseValue;
+				console.log("this.employees>>>>",this.employees)
 				this.spinnerService.hide();
 			}, 1000);
 		});						

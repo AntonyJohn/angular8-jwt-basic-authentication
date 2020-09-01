@@ -19,10 +19,13 @@ export class AuthenticationService {
     }
     
     constructor(private http: HttpClient, private router: Router) {
-        console.log("Authentication service constructor")
+        console.log("Authentication service constructor",localStorage.getItem('currentUser'))
 		this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
-        this.loggedIn= new BehaviorSubject<boolean>(this.currentUserValue == null || this.currentUserValue[0] == undefined ? false : true);
+        console.log("this.currentUserValue::",this.currentUserValue,"-------")
+        //this.loggedIn= new BehaviorSubject<boolean>(this.currentUserValue == null || this.currentUserValue[0] == undefined ? false : true);
+        this.loggedIn= new BehaviorSubject<boolean>(this.currentUserValue == null  ? false : true);
+        console.log("this.loggedIn::",this.loggedIn)
         this.logg=this.loggedIn.asObservable();
     }
 
@@ -37,6 +40,7 @@ export class AuthenticationService {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
+                console.log("this.currentUserValue::",this.currentUserValue)
                 this.loggedIn.next(this.currentUserValue == undefined ? false : true);
                 return user;
             }));

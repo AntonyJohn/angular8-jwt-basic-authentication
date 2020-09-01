@@ -55,7 +55,7 @@ export class EmployeeComponent implements OnInit {
 		this.spinnerService.show();
 		this.loadAllEmployees((data_) => {
 			if(data_){
-				this.employeesAll = data_;
+				this.employeesAll = data_.responseValue;
 				this.pageSize = this.pageSizeOptions[0];
 				console.log('this.pageSize',this.pageSize,'----',this.employeesAll.length)
 				for(let i=0; i<this.employeesAll.length; i++){
@@ -124,6 +124,7 @@ export class EmployeeComponent implements OnInit {
 		if(mode === 'add') {
 			selectedRow = new Employee();
 		}
+		console.log("selectedRow>>>>>>>>>>>>",selectedRow)
 		let dialogRef = this.dialog.open(EmployeeDialogComponent, {
 		  width: '850px', 
 		  height: '850px',
@@ -139,7 +140,8 @@ export class EmployeeComponent implements OnInit {
 			this.isLoading=false;
 			this.loadAllEmployees((data_) => {
 				if(data_){
-					this.employeesAll = data_;
+					this.employeesAll = data_.responseValue;
+					console.log("ALLL:::",this.employeesAll)
 					for(let i=0; i<this.employeesAll.length; i++){
 						if(i < this.pageSize) {
 							this.employees[i] = this.employeesAll[i];

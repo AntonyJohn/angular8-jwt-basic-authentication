@@ -62,7 +62,8 @@ export class EmployeeDialogComponent implements OnInit {
 			let now: Date = new Date();
 			this.minDate = new Date(now.getFullYear() - 69, now.getMonth(), now.getDate());
 			this.maxDate = new Date(now.getFullYear() - 19, now.getMonth(), now.getDate());
-			this.employeeInfo = this.data;			
+			this.employeeInfo = this.data;
+			console.log("this.employeeInfo<<<<<<<<<<<<<<<<<<<",this.employeeInfo)			
    }
 
   ngOnInit() {  
@@ -94,7 +95,7 @@ export class EmployeeDialogComponent implements OnInit {
 				})
 			])			
 		});
-
+console.log('this.employeeInfo',this.employeeInfo)
 		this.address = this.employeeForm.get('address') as FormArray;
 		if(this.employeeInfo != null) {
 			this.employeeInfo.address.forEach((field, index) => {
@@ -102,8 +103,8 @@ export class EmployeeDialogComponent implements OnInit {
 				faControl.get('country').setValue(this.employeeInfo.address[+index].country);
 				faControl.get('city').setValue(this.employeeInfo.address[index].state);
 				faControl.get('state').setValue(this.employeeInfo.address[index].city);
-				faControl.get('street').setValue(this.employeeInfo.address[index].street);
-				*/				
+				faControl.get('street').setValue(this.employeeInfo.address[index].street);*/
+								
 				this.address.controls[index].get("country").setValue(this.employeeInfo.address[index].country);
 				this.address.controls[index].get("state").setValue(this.employeeInfo.address[index].state);
 				this.address.controls[index].get("city").setValue(this.employeeInfo.address[index].city);
@@ -117,6 +118,7 @@ export class EmployeeDialogComponent implements OnInit {
   }
   
   update(employee) {
+	console.log("update:::",employee)
 	// stop here if form is invalid
 	if (this.employeeForm.invalid) {
 		return;
@@ -140,7 +142,7 @@ export class EmployeeDialogComponent implements OnInit {
 	});
 	
 	this.employeeService.update(employee).pipe().subscribe(employee => {	
-			this.dialogRef.close({event:'Update',data:employee});		
+			this.dialogRef.close({event:'Update',data:employee.responseValue});		
 		}, err => {
 			console.log('err',err);
 			//this.error = err;
@@ -148,13 +150,26 @@ export class EmployeeDialogComponent implements OnInit {
   }
   
   add(employee) {  
+	  console.log("Add:::",employee)
 	// stop here if form is invalid
 	if (this.employeeForm.invalid) {
 		return;
 	}
+	console.log("employee.address:",employee.address)
+	this.address.controls.forEach((field, index) => {
+		if(field.get('country').value != '') {
+			employee.address.push({
+				id:"",
+				country: field.get('country').value,
+				state: field.get('state').value,
+				city: field.get('city').value,
+				street: field.get('street').value
+			});
+		}		
+	});
 	employee.status = "Active";
 	this.employeeService.add(employee).pipe().subscribe(employee => {			
-			this.dialogRef.close({event:'Add',data:employee});
+			this.dialogRef.close({event:'Add',data:employee.responseValue});
 		}, err => {
 			console.log('err',err);
 			//this.error = err;
